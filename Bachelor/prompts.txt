@@ -1,0 +1,180 @@
+    # Instructions:
+    # - Each prompt starts with Prompt<ID>Start and ends with Prompt<ID>End
+    # - You can modify the text between Start and End freely.
+    # - Do not change the Prompt<ID>Start and Prompt<ID>End markers.
+    # - IDs can be words or numbers (e.g., Welcome, 001, OrderSummary).
+
+# För denna prompt så givs tipsen från tidigare och kontext för byggnaden i slutet av prompten.
+PromptGuideStart
+Skapa en enkel, tydlig steg-för-steg-guide för hur en person utan förkunskap kan planera och genomföra följande åtgärder på en bostad (informationen om bostaden ges i slutet av denna text).
+
+Guiden måste inkludera:
+- Vad man behöver tänka på i förväg, t.ex. förutsättningar, val av lösning, kostnader.
+- Om viss typ av entreprenör eller expert bör kontaktas.
+- Hur själva åtgärden kan genomföras praktiskt.
+- Vad som är viktigt att följa upp eller tänka på efteråt.
+- Om relevant: En uppskattning av tidsåtgång eller svårighetsgrad för varje steg.
+- Som Avslutande text, beskriv vilka experter som man kan kontakta för åtgärden. Med inledningstitel "Kontakt med experter"
+
+Använd konkret och lättförståeligt språk. Tydlig struktur. 
+Svara på svenska.
+Skriv inte "Hej" eller "Med vänlig hälsning" i början eller slutet.
+Skriv inte ut kontexten i svaret, utan endast själva stegen.
+- Använd bara <strong> och <p> i texten
+- Använd INTE <ul> eller <li> i texten
+PromptGuideEnd
+
+
+# För denna prompt så givs tipsen från tidigare och kontext för byggnaden i slutet av prompten.
+PromptSavingStart
+Generera en beräkning av energibesparingar för följande åtgärder på en bostad som ges i slutet av denna text.
+Gör också en uträkning på hur mycket pengar man kan spara med energibesparningstipsen för användaren, inled med "Total potentiell besparing:". Och om kommun är given ska du använda kommunen som referns för beräkningen. Nämn också i slutet att beräkningen bara är en uppskattning och kan ha fel.
+Svara på svenska och skriv med tydlig struktur:
+Skriv inte "Hej" eller "Med vänlig hälsning" i början eller slutet av meddelandet.
+Skriv inte ut kontexten i svaret, utan bara beräkningarna.
+Skriv uträkningar i latex
+PromptSavingEnd
+
+# För denna prompt så givs tipsen från tidigare och kontext för byggnaden i slutet av prompten.
+PromptOffertStart
+Generera en offertförfrågan som en privatperson kan kopiera och skicka ut till företag för att utföra följande åtgärder som skrivs i slutet av texten:
+Svara på svenska och följ denna struktur
+Offertförfrågan - 
+
+1. Inledning
+
+
+2. Beskrivning av Åtgärder
+
+
+3. Bostadsdetaljer
+
+Byggnadstyp: 
+Uppvärmningsmetod:
+Energisystem:
+Energiförbrukning (kWh/år):
+Boarea (m²):
+Byggnadsår: 
+Golvvärme: 
+Radiatorer: 
+Solceller:
+Solvärme:
+Batterilagring:
+Laddbox för elbil:
+Ackumulatortank/Varmvattenbredare:
+Tryckluft:
+Styr och Övervakningssystem:
+Ventilation: 
+Kommun: 
+Övrigt: 
+Aktör: 
+
+4. Önskemål gällande Offerten
+
+Vänligen inkludera följande i er offert:
+
+En detaljerad beskrivning av de föreslagna isoleringsåtgärderna.
+Materialkostnader, inklusive typ av isoleringsmaterial.
+Arbetskostnader.
+Totalpris för projektet.
+Beräknad tidsåtgång för arbetet.
+Referenser eller tidigare arbeten av liknande slag.
+Garantier för utfört arbete.
+
+5. Tidsram
+
+Vänligen ange inom vilken tidsram ni kan utföra arbetet om offerten accepteras.
+
+6. Kontaktinformation
+
+[Fyll i ditt namn här] [Fyll i din adress här] [Fyll i ditt telefonnummer här] [Fyll i din e-postadress här]
+
+7. Prisspecifikation
+
+Materialkostnad: [Fyll i pris här]
+Arbetskostnad: [Fyll i pris här]
+Totalt pris: [Fyll i pris här]
+8. Övrigt
+
+[Här kan du lägga till eventuella specifika önskemål eller frågor]
+PromptOffertEnd
+
+# För denna prompt så givs tipsen från tidigare och kontext för byggnaden i slutet av prompten.
+PromptExpandStart
+Du är en expert på energieffektivisering och representerar Energikontoret Region Örebro län i Sverige.
+Du kommer få punkter som du ska utveckla på och ger mer information om.
+- För varje utveckling av punkt, skriv mellan 300-500 ord.
+- Skriv titeln på varje punkt i fetstil
+- Skriv inte en introduktion i svaret
+- Nämn inte expert i svaret
+- Använd bara <strong> och <p> i texten
+- Använd INTE <ul> eller <li> i texten
+- Skriv **inte** ut JSON objekt som används som input i svaret
+Utveckla följande punkter: 
+PromptExpandEnd
+
+# För denna prompt så ges fastighetsinformation i slutet automatiskt.
+PromptQuestionStart
+Du är en expert på energieffektivisering och representerar Energikontoret Region Örebro län i Sverige.
+Utifrån följande information om en fastighet, som samlats in från en användare via vår webbplats, ska du:
+Lista 6 konkreta energieffektiviserande åtgärder som är relevanta för fastigheten.
+
+Minst ett av dessa förslag (helst sista) ska handla om att minska effekttoppar på el eller att flytta elanvändning till tider med lägre belastning. Förklara även på ett enkelt sätt varför detta är viktigt för både ekonomi och elsystemet.
+Försök att anpassa meddelandet till typ av byggnad och vad de brukar ha som elanvändning.
+
+Svara med en giltig JSON-array där varje objekt har egenskaperna "title" och "description".
+
+**Viktigt:**
+- Returnera endast JSON-arrayen, ingen förklaring eller text före eller efter.
+- Alla strängvärden ska vara på en rad. Om radbrytning behövs, använd \\n (backslash-n).
+- Använd inte ogiltiga tecken, radbrytningar eller tabbar inne i strängar.
+- Skriv inte ut JSON som en sträng, utan som en faktisk array.
+- Använd inte fetstil, alltså **text**.
+Svara på svenska.
+PromptQuestionEnd
+
+# Prompt för analys av exceldata
+PromptExcelStart
+Du har fått ett dataset i JSON-format som är baserat på en Excel-fil med timvis förbrukningsdata.
+Varje kolumn (förutom datum/tid) representerar en typ av förbrukning (t.ex. el, fjärrvärme, fjärrkyla).
+Börja med "Här är en analys av förbrukningsdata från filen:"
+Skriv ingen hälsningsfras och skriv inte information om vad du tänker analysera 
+
+Analysera varje förbrukningskolumn enligt följande punkter:
+
+1. **Profiler**: Identifiera mönster för:
+- Dygn (timmar då förbrukningen är högst/lägst, när den börjar stiga och sjunker igen)
+- Veckodagar (vilka veckodagar har högst respektive lägst förbrukning)
+- Månader (säsongsvariationer)
+
+2. **Effekttoppar**:
+- Identifiera enskilda timmar då förbrukningen är som högst.
+- Ange när dessa infaller (dygn, vecka, månad).
+
+3. **Baslast**:
+- Räkna ut medelvärdet av dygnets lägsta förbrukning per dag.
+- Undersök om baslasten varierar över året.
+
+4. **Verksamhetstid** _(om användaren har angett verksamhetstider)_:
+- Undersök om förbrukningsmönstret stämmer överens med dessa tider.
+- Exempel: Finns hög förbrukning på helger fast verksamheten ska vara stängd?
+
+5. **Avvikande mönster**:
+- Identifiera onormala förbrukningar (t.ex. plötsliga toppar, ovanliga tider)
+- Beskriv när och var dessa inträffade.
+
+Observera att om datan innehåller datum och tid - använd det för att avgöra veckodag och klockslag.
+Svara i klartext 
+
+Returnera analysen uppdelad per kolumn, med tydliga rubriker.
+I slutet ska du sammanfatta analysen.
+PromptExcelEnd
+
+
+# Prompt för analys av pdf-filer
+PromptpdfStart
+Kan du analysera innehållet i PDF-filen utifrån ett energieffektiviseringsperspektiv?
+
+Börja med "Här är en analys av pdf-filen:"
+Skriv ingen hälsningsfras och skriv inte information om vad du tänker analysera 
+PromptpdfEnd

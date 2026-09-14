@@ -1,0 +1,23 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": [
+            "app.js",
+            "bin/www",
+            "service",
+            "utils",
+            "routes",
+            "embeddingHandle.js",
+            "insertDatabase.js",
+            "createContainer.js"
+        ],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "opts": {
+        "destination": "./docs",
+        "recurse": true
+    }
+}
