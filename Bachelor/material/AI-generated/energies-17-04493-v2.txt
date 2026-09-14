@@ -1,0 +1,991 @@
+energies
+Article
+Energy Efficiency in Seasonal Homes: A Study on the Occupancy,
+Energy Use, and Renovation of Second Homes in Sweden
+KristinaMjörnell1,2
+1 ResearchInstitutesofSweden,SvenHultinsPlats5,41258Gothenburg,Sweden;kristina.mjornell@ri.se;
+Tel.:+46-730-88-57
+2 DivisionofBuildingPhysics,LTH,LundUniversity,22100Lund,Sweden
+Abstract:Theescalatingutilisationofsecondhomeshasledtoanextensioninheatingperiodsand,
+toacertaindegree,renovationstoelevatethestandard,resultinginaugmentedenergyandresource
+consumption.AcomprehensivesurveywasconductedinSweden,examininguserpatternsacross
+differentseasons,heatingsystems,andimplementedenergyefficiencymeasures.Theresultsindicate
+thatsecondhomesareoccupiedforextendedperiodsduringthesummerseasonandintermittently
+throughouttheyear. Overhalfofthesecondhomesareheatedevenwhenunoccupied,with12%
+maintainingatemperatureabove16◦C.Thepredominantheatingmethodisdirectelectricity(32.2%),
+followed by heat pumps (29.5%) and stoves (17.5%). A variety of renovations are undertaken,
+primarilytoenhancethestandardandtechnicalperformance,butalsotoimplementenergyefficiency
+measuressuchaswindowreplacement,additionalinsulation,orheatpumpinstallation.Basedon
+thereporteduserandheatingpatterns,andtheenergyrenovationscarriedout,thepotentialenergy
+savingswithdifferentenergyrenovationstrategieswereestimatedfortheSwedishsecondhome
+stock.Theresultsshowthatthoughloweringthetemperaturewhenasecondhomeisunoccupied
+emergesasthemostefficientmeasure, bothintermsofcost-effectivenessandclimateimpact, it
+needstobecomplementedwithintermittentheatingordehumidificationtoensurethattherelative
+humidityisbelowcriticallevels,toavoidtheriskofdamagescausedby,forexample,mouldgrowth.
+Installingaheatpumpisthesecondmostenergy-andcost-effectivemeasureandhastheadvantage
+thattheindoortemperaturecanbemaintainedatratherhighlevels.
+Citation:Mjörnell,K.Energy
+Keywords:energyuse;secondhomes;energyrenovation;heatingsystem;userpattern
+EfficiencyinSeasonalHomes:A
+StudyontheOccupancy,EnergyUse,
+andRenovationofSecondHomesin
+Sweden.Energies2024,17,4493.
+1. Introduction
+https://doi.org/10.3390/en17174493
+1.1. Background
+AcademicEditor:Alessandro
+Societyisconfrontedwithsignificantchallengesintransformingthebuiltenvironment
+Cannavale
+toenhanceresourceefficiencyandreduceclimateimpact. InEurope,theEuropeanUnion
+Received:8August2024 hasestablishedobjectivesfortheenergyefficiencyofbuildings,necessitatingeachcountry
+Revised:20August2024 todeviseandimplementastrategytosupporttheenergyrenovationofexistingbuildings.
+Accepted:3September2024 Thenewregulationsinthe“Fitfor55”packageaimtoreducegreenhousegasemissions
+Published:6September2024 fromthebuildingsectorby40%,asignificantdecreasefromthe29%recordedin2005[1].
+In Sweden, the National Board of Housing, Building, and Planning has developed a
+nationalrenovationstrategy. Thisstrategyincludesaroadmapthatsupportstheenergy
+renovationofthebuildingstock,withanambitiousgoalofreducingenergyuseby50%
+Copyright: © 2024 by the author.
+by2030comparedwith2005[2]. EventhoughmostenergyforheatingSwedishbuildings
+Licensee MDPI, Basel, Switzerland.
+originatesfromdistrictheating,electricity,orbiofuel,itisstillmotivatedtodecreasethe
+This article is an open access article
+totalconsumption. Reducingelectricityuseinthehousingsectorwouldsupportthegreen
+distributed under the terms and
+transitionofthetransportandindustrialsectorsandalsocontributetoacleanerEuropean
+conditionsoftheCreativeCommons
+electricitymarket.Furthermore,thestrategyproposesthecompletephase-outoffossilfuels
+Attribution(CCBY)license (https://
+by2050atthelatestandsuggestsseveralmeasurestoexpeditetheenergyrenovationof
+creativecommons.org/licenses/by/
+thebuildingstock[2]. Mostincentivesarespecificallydesignedformulti-familybuildings,
+4.0/).
+Energies2024,17,4493.https://doi.org/10.3390/en17174493 https://www.mdpi.com/journal/energies
+Energies2024,17,4493 2of18
+withthesoleincentiveforsingle-familyhousingbeingataxdeductionforrenovationwork.
+AccordingtoEUregulations,eachpropertymustpossessanenergyperformancecertificate
+toinformbothownersandusersabouttheproperty’senergyperformance[3]. However,
+certaingroupsofbuildings,suchassecondhomes,areexemptfromtherequirementforan
+energyperformancecertificate[4]. Thisexemptionisquestionable,giventhenon-negligible
+numberofsecondhomesanditsimpactontotalenergyandpoweruse[5,6].
+1.2. PreviousResearchonUseandEnergyUseinSecondHomes
+AccesstoasecondhomeisaprevalentphenomenonintheNordiccountries,including
+Norway, Sweden, Finland, and Denmark, as well as in the United Kingdom, France,
+Germany,theCzechRepublic,SouthAfrica,Canada,theUnitedStates,andAustralia[7,8].
+Duringthe1960s,1970s,andearly1980s,theconstructionofsecondhomesexperienced
+a boom, leading to the addition of cottages in locations on the urban periphery across
+theNordiccountries[8–12]. AsubstantialpartofsecondhomesinSweden,Norway,and
+Finland,between80and90percent,werepurpose-built. However,thestockofsecond
+homesissupplementedbyconvertedsingle-familyhouses,whichpreviouslyservedas
+primaryresidencesbuthadbecomeobsoleteorabandonedbecauseofincreaseddemands
+for modern, comfortable housing, or outmigration as a result of urbanisation [9,13,14].
+Consequently,convertedsecondhomesarecommoninruralareasintheNordiccountries.
+Approximately50%ofallNordichouseholdshaveaccesstoasecondhome[10]. According
+toearlierstudies,26%ofthepopulationinNorwayownasecondhome,but40%utilise
+secondhomes[15],andinSweden,about54%ofthepopulationownsorhasaccesstoa
+secondhomethroughrelativesandfriends[5,16]. InFinland,62%ofthepopulationhas
+regularaccesstooneormoresecondhomes[17],andinDenmark,14%ownasecondhome,
+butitislikelythatmorepeoplehaveaccesstoone[18]. Thefrequencyofuseofsecond
+homes in these three countries generally follows the same pattern. In Finland, second
+homesareusedonaveragefor75daysperyear,inSweden,for71days,andinNorway,
+forbetween26and51daysperyear(withanationalmeanof47daysperyear). However,
+therearesignificantregionaldifferencesinthefrequencyofusebecauseoflocationand
+standard[13].
+Inrecentyears,therehasbeenagrowinginterestinthepurchaseandutilisationofsec-
+ondhomes,drivenbyfactorssuchas“flightshame”,whichhasencouragedmoreholidays
+tobetakenclosertoone’spermanentresidenceandwithinthehomecountry,ratherthan
+abroad,aswellastheCOVID-19pandemic,whichhasfacilitatedremotework—atrend
+likelytoendure. Secondhomesservevariouspurposes,includinguseassummerorwinter
+residencesandvariationsinbetween,andtheiroperationandmaintenancearediverse.
+Additionally, manysecondhomeshavebeenconvertedintopermanentresidencesand
+viceversa. However,theclimateimpactresultingfromtheincreaseduseofsecondhomes,
+alongsidepotentialrenovationsandenergyefficiencyimprovementsinbuildingsystems
+andmaterials,remainsunderexplored,despitetheenvironmentalandclimateimplications
+ofsecondhomesbeingatopicofinterestsincethe1970s[19]. Theculturalandhistorical
+values associated with second homes have also been insufficiently researched. Studies
+fromvariousEuropeanregionsindicatethatsimplersecondhomesarebeingrenovatedto
+enhancecomfort. Forinstance,inNorway,theincreasedstandardoffacilitiesinsecond
+homeshasledtogreaterenergyuseandclimateimpact[20]. Similarly,inFrance,there
+has been a rise in energy consumption, larger building spaces, and increased land use
+pressure from second homes [21]. A Danish study reveals that second homes used for
+rentalpurposesexhibithigherstandardsandincreasedenergyconsumption,withelectric-
+itypredominantlyusedforheating,incontrasttothebroaderDanishbuildingstock[22].
+AquestionnairesurveyamongNorwegiansecondhomeowners, aimingtounderstand
+the Norwegian second home phenomenon in relation to sustainability (environmental,
+social,andeconomic),showsalowinterestinreducingenergyuse[23]. Steffansen(2017)
+observesanincreaseintheuseofsecondhomesbybothownersandothersduringthe
+pandemic,whilealsonotingtheblurreddistinctionbetweensecondandpermanenthomes.
+Energies2024,17,4493 3of18
+Hefurtherreportsanaverageincreaseinlivingspace,materialuse,energyconsumption,
+andstandardspersecondhome. InFinland,anationalsurveycalledtheSecondHomes
+Barometerprovidesinformationonthelocationofsecondhomes,availablefacilitiesand
+amenities, and owners’ future plans [24]. Local surveys of second homeowners in Fin-
+landhavebeenusedtostudytravelhabitsandtheassociatedclimateimpactofsecond
+homes [25]. Similar trends have been observed outside Europe, for example, in South
+Africa[26]. Electricityconsumptioninsecondhomeshassteadilyincreasedovertheyears,
+particularlyasthesepropertiesareincreasinglyusedyear-roundbyretireesandfamilies
+on holiday. The more intensive year-round use has driven up electricity consumption,
+whetherforspaceheatingorhotwaterproduction. InNorway,electricityconsumption
+increased by 97% from 1973 to 2005 [27]. This trend is partly due to the fact that most
+secondhomeswereoriginallybuiltforsummeruseandarethereforeoftenpoorlyinsulated.
+Anderssonetal. (2008)simulatedenergyconsumptioninDanishsecondhomes,combining
+top-downestimationsbasedontimeseriesoftotalelectricityconsumptionandthenumber
+ofsecondhomes,withbottom-upanalysesofmeasuredelectricityconsumptioninspecific
+secondhomes,consideringheatlosses,electricityusedforappliances,andvarioususer
+patterns[28].Basedonasurveyof700secondhomeownersfromselectedareasinDenmark
+andinterviewswithrepresentativesfromtypicalgroupsofsecondhomeowners,aswellas
+stakeholdersinrental,construction,electricitysupply,regulatoryprocesses,andrenewable
+energyplants,acatalogueofrecommendationsforenergysavingswasdeveloped[29].This
+catalogueisaimedatthementionedactors,includingsecondhomeownersthemselves. The
+studyconcludesthatthepotentialforenergysavingsinsecondhomesissubstantial,with
+solutionsreadytobeimplemented. However,thereisalackofawarenessofthesesolutions
+andabeliefthatinvestinginenergysavingsinsecondhomescouldbebeneficial[29].
+The second home stock in Sweden consists of a little more than 600,000 second
+homes, [5]. Second homes are here defined as valuation units that do not have regis-
+teredresidentsandaretaxedasagriculturalunitswithbuilding(s),single-familyhouse
+unitswithbuilding(s),single-familyhousesonfreeholdland,orsingle-familyhouseunits
+withbuildingvaluebelowSEK50,000correspondingtoEUR4325orUSD4755[5]. Even
+thoughtheenergyusefortheSwedishsecondhomestockdecreasedfrom3.5TWhin2011
+to2.83TWhin2021,whichmeansapproximately20%duringthelast10years[5,6],more
+ambitious measures must be taken to reach the 2030 goals. Mata et al. (2013) estimate
+thepotential forreducing energyuse inSwedishresidential buildingswithpermanent
+use, considering that a number of energy measures were performed, to be 53% based
+on1400samplebuildings,andtheresultsshowthatthemeasureswiththegreatestsav-
+ings are those involving heat recovery systems (22%) and reduced indoor temperature
+(14%)[30]. Althoughsecondhomesarenotmandatedtopossessanenergyperformance
+certificate, somehomeownershavevoluntarilyobtainedone. AsofAugust2022, there
+were10,766secondhomesinSwedenwithanissuedenergyperformancecertificate(EPC),
+accountingfor1.8%ofthetotalnumberofsecondhomes. Theaveragespecificenergyuse
+ofthese10766secondhomeswasestimatedtobe119kWh/m2[31]. MostSwedishsecond
+homesareinenergyclassesE,F,andG.Thepoorenergyperformancecanbeexplainedby
+thefactthat80–90%werepurpose-builtandintendedmainlyforuseduringthesummer.
+The majority of second homes have direct electricity as their main heating system, but
+somehaveinstalledanair-to-airheatpump,presumablytoreduceelectricityconsumption.
+Groundsourceheatpumpsaremorecommoninsecondhomeswithhigherenergyclasses
+(A–D),probablybecauseitisasignificantlylargerinvestmentthaninstallinganair-to-air
+heatpumpandquiteafewofthehousesareheatedbywoodstovesortiledstoves[31].
+Thepoorenergyperformance,togetherwithahighproportionofelectricalheating,make
+thisgroupofbuildingsaninterestingtargetgroupforenergyefficiencymeasures.
+Inaddition,thereisverylimitedresearchontheenergyrenovationofsecondhomes
+anditsimpactoncultural–historicalvalues. Secondhomesrepresentgreateconomicand
+cultural–historicalbutalsosocialvaluesthatmustnotbeneglectedordistorted. Itmust
+be ensured that energy-efficient measures do not cause moisture damage or devastate
+Energies2024,17,4493 4of18
+cultural–historicalvalues[32,33]. Atthesametime, secondhomesmustalsoprovidea
+goodindoorenvironmentregardingboththermalcomfortandairquality,whichbecomes
+especiallyimportantifusers’timespentinsecondhomesincreases. However,resultsfrom
+aFinishstudymeasuringrelativehumidityandtemperatureindoorshourlyinunheated,
+uninsulatedcottagesandoutdoorsindicatedthatthemonthlyaveragevapourcontentof
+airinsideislowerthantheaveragevapourcontentoutsidemosttimesexceptforsome
+occasions during spring and when a cottage is occupied [34]. However, winter visits
+involvingheatinginducedryingofthecottage. Therelativehumiditystaysmainlybelow
+80%,whichisacriticallevelformouldgrowthonorganicmaterials.Whenconstantheating
+wasintroducedtoincreasethetemperaturebyapproximately3◦C,itresultedinadecrease
+intherelativehumidityby10%. Thiswouldbeenoughtosubstantiallydecreasetheriskof
+condensationandmouldgrowthconsiderably[34]. Anevenbetterapproachwouldbeto
+introduceintermittentheating,whenclimaticconditionsarecriticalintermsoftheriskof
+mouldgrowth[34,35]. Thismustbethoroughlyanalysedandvalidatedinmoresecond
+homesbeforeanygeneralrecommendationscanbemade. Despitetheexistenceofseveral
+priorstudiesonenergyuse, includingsomethatfocusonenergyuseandthepotential
+forenergyefficiencyinsecondhomes[25,28,34,36],thereremainsadearthofinformation
+on current usage patterns, energy use, heating sources, and energy saving potential in
+secondhomes.
+1.3. AimandStructureofThisStudy
+Theoverarchingaimofthisstudyistocompileandsystemiseinformationonenergy
+use and energy renovation measures and to analyse the energy efficiency potential in
+Swedishsecondhomes. Thiswasaccomplishedbycompletingthefollowing:
+• Collectingdatathroughanationwidesurvey[37],wheresecondhomeownerswere
+askedhowtheyuse,heat,andrenovatetheirsecondhomesandalsoiftheytakethe
+building’scultural–historicalvaluesintoconsiderationwhenimplementingrenova-
+tionmeasures.
+• EvaluatingtheenergyperformanceandenergyefficiencypotentialoftheSwedish
+second home stock, based on the national survey data on user patterns, heating
+methods, andrenovationmeasures, incombinationwithresultsfromatheoretical
+analysisoftheenergysavingpotentialandcarbonfootprintgeneratedbydifferent
+energyrenovationmeasuremadeonapilotsecondhome[36].
+Despitethelimitedsample,theresultsgiveindicationsthattheenergyuseforsec-
+ond homes can be halved if appropriate renovation measures and heating patterns are
+introduced,whicharepresentedinthispaper.
+1.4. StrengthsandLimitations
+Thestrengthofthisstudyliesinthecombinationoffindingsfromthenationwide
+survey,whichscrutinisestheusagepattern,heatingmethodologies,andenergyrenovations
+undertaken by second homeowners. These data are coupled with prior simulations of
+energyuse,usingBIMEnergytoanalysetheeffectofimplementingvariousenergyrenova-
+tionmeasures[36]. Thisapproachfacilitatesanestimationofthepotentialenergysavings
+fortheentireSwedishsecondhomestock, aswellastheclimateimpactofintroducing
+specificenergyefficiencymeasures. Thelimitationsarethatthisstudywasconductedin
+Swedenandonlyreflectsnationalconditions,eventhoughtherearesimilaritiesinother
+Nordiccountries. Theresultsarebasedonalimitednumberofresponsesfromsecond
+homeresidents,whichareconsideredarepresentativesampleoftheSwedishsecondhome
+stock. Thepotentialforenergyefficiencyisevaluatedbasedonthesimulatedenergyuse
+foronepilothouse,awoodenhousesituatedontheSwedishwestcoast,onwhichvarious
+renovation measures were introduced. Even though this is a rough simplification, the
+pilothouseservesasarelevantexampleoftypicalSwedishsecondhomes,andtheresults
+shouldbeseenasreasonableestimates.
+Energies2024,17,4493 5of18
+2. NationalQuestionnaireSurvey
+2.1. QuestionFormulation
+To gather insights on the usage, heating, and renovation patterns of the Swedish
+secondhomestock,aquestionnairewasdevelopedanddistributedwithsupportbythe
+SOMInstitute(NationalSurveyInstitute). Thisnationwidesurveyenablesresearchers,
+media,andpoliticianstoposequestionstoarepresentativesampleofthepopulation[37].
+Theauthorformulatedsevenquestionsconcerningownership,accessibility,usepattern,
+heating,renovation,andenergy-efficientmeasuresmadeaswellascareandpreservation
+ofcultural–historicalvaluesofthesecondhomes. Severalofthequestionsweremultiple-
+choice. TheSOMInstitutewasresponsiblefortheproductionofthequestionnaire,coding
+ofopenresponses,andpreparationofthefinaldataset,whichincludedpossibilitiesfor
+openquestionsandspeciallyconstructedvariables. Thespecificquestions,translatedinto
+English,arepresentedinAppendixA.
+2.2. SurveyExecutionandDataPreparation
+ThesurveywasexecutedinSeptember2022whenthequestionnaire,bothinpaper
+andasadigitalquestionnairetobefilledinonline,wasdistributedtoarandomsampleof
+3750individuals,aged16to90,livingacrossSweden. Thesurveyreceivedresponsesfrom
+1826participantsbetweenSeptemberandDecember2022. Theresponseswereoptically
+read using a scanner. Out of the gross sample of 3750 individuals who received the
+questionnaire,therewasanaturalnon-responsethatincluded137questionnaires. This
+could be attributed to factors such as unknown addresses, absence during the period,
+residing/studying/working abroad, lack of proficiency in Swedish, institutional care,
+mentalincapacitytorespond,orlackoftheabilitytocommunicate.
+3. Results
+3.1. ResultsoftheNationalSurvey
+TheresultsofthequestionnairesurveyweresuppliedbytheSOMInstituteintheform
+ofanExcelspreadsheet,withtickmarkscorrespondingtotheanswersofeachrespondent
+tothespecificquestionsandmultiple-choicealternatives. Thetotalnumberofrespondents
+was 1826, equating to a response rate of 51%. Out of these, there were 674 affirmative
+responses to the question of whether they own or have access to a second home. This
+indicatesthatmorethanone-thirdoftherespondentshaveaccesstoasecondhome,as
+showninTable1.
+Table1.Respondents’answerstowhethertheyownorhaveaccesstoasecondhomeornot.
+Responds No.ofPeople Percentage
+Owntheirsecondhome 287 15.7
+Haveaccesstoasecondhome 387 21.2
+Donotownorhaveaccessto 1085 59.4
+Noanswerormultipleanswers 67 3.7
+Theoutcomeofthequestionregardinghowtherespondentsutilisetheirsecondhome
+reveals that the majority use their second homes for shorter periods in the spring and
+autumn,ornotatallduringtheautumn. Furthermore,theyuseitforshorterorlonger
+durationsduringthesummerperiod,asdepictedinTable2.
+Theresponsestothequestionregardingthetypicalheatingtemperatureofthesecond
+homewhenunoccupiedsuggestthatoverathirdoftheusersdonotutiliseanyheating
+during their absence. A quarter of the respondents maintain a low temperature, not
+exceeding 10◦C. Another quarter keeps the temperature within the range of 11–15 ◦C.
+Merely12%oftheuserskeepthetemperatureat16◦Corhigher,asillustratedinTable3.
+Energies2024,17,4493 6of18
+Table2. Userpatternsduringdifferentseasons,asdeclaredbytherespondents,inpercentageof
+thetotalnumberofresponses(682),whichareslightlymorethanthenumberofrespondents(674)
+becauseofmultipleanswers.
+UserPattern Spring Summer Autumn Winter
+Notatall 13.2 3.7 15.6 35.1
+Onlyafewoccasions
+22.0 8.8 23.8 19.8
+duringdaytime
+Shorterperiods 46.5 36.3 44.8 30.8
+Longerperiods 9.4 36.1 7.8 5.7
+Entireperiod 4.5 13.8 4.1 2.6
+N/A 4.4 1.3 4.0 5.9
+Table3.Theapproximatetemperaturetowhichthehouseisheatedwhennotused.
+Lowerthan10◦C 11–15◦C 16◦CorHigher NoHeating N/A
+25% 24% 12% 36% 3%
+In second homes, the predominant source of heating is electrical heating. This is
+subsequentlyfollowedbytheuseofheatpumpsandeitherwoodstovesortiledstoves,as
+depictedinTable4.
+Table4.Mainheatingsourcereportedbytherespondentsexpressedinpercentageofall674respond-
+inghouseholds.
+MainHeatingSource Owner HaveAccessto InTotal
+Directelectricity 13% 19% 32%
+Woodstoveortiledstove 7% 11% 18%
+Heatpump 14% 15% 29%
+Other 3% 6% 9%
+Multiplemarks 4% 4% 8%
+N/A 1% 3% 4%
+Outofthe674respondents,202indicatedthattheyhaveundertakenenergyrenovation
+measuresoverthepastdecade. Thesemeasurestypicallyencompassthereplacementof
+windows with more energy-efficient alternatives, the addition of insulation to the roof
+and/or attic, the façade, or the floor and/or foundation, and the installation of a new
+heatingsystem,asshowninTable5.
+Table 5. Energy renovation measures undertaken during the last decade, as reported by the re-
+spondents,expressedasthepercentageofall674respondinghouseholds.Somerespondentsgave
+multipleanswers.
+EnergyRenovationMeasures Own HaveAccessto
+Installingenergy-effectivewindows 25% 15%
+Additionalinsulationintheroofand/orattic 17% 10%
+Additionalinsulationonfaçade 12% 9%
+Additionalinsulationoffloorand/orfoundation 13% 9%
+Newheatingsystem 39% 25%
+Furthermore,310respondentsindicatedthattheyundertooksometypeofrenovation
+measure or reconstruction over the past decade. These renovation measures typically
+involverefurbishinginteriorsurfaces,kitchens,andbathrooms,aswellasroofs,façades,
+andwindows,withafewownerswhoundertookfoundationwork,seeTable6.
+Energies2024,17,4493 7of18
+Table6. Renovationmeasuresundertakenduringthelastdecade,asreportedbytherespondents
+expressed,asthepercentageof674respondinghouseholds.Somerespondentsgavemultipleanswers.
+RenovationMeasures Owner HaveAccessto
+Roof/attic 15% 20%
+Windows 19% 28%
+Façade 19% 27%
+Ground 8% 7%
+Interiorsurfaces 19% 33%
+Kitchen 18% 25%
+Bathroom 18% 23%
+A significant number of 85 respondents conveyed that their decisions regarding
+renovationorenergyrenovationmeasureshavebeeninfluencedbythecultural–historical
+valuesoftheirsecondhome,duetotheirappreciationforthesevalues. Conversely,amere
+eightrespondentsassertedthattheirdecisionswerepromptedbyrequirementsimposed
+bythelocalmunicipality.
+3.2. SummaryofResults
+ThisstudyrevealsthatthemajorityofthesecondhomeusersinSwedenarelowusers,
+definedasnouseatalltolongerperiodsinthesummer,shorterperiodsorsingledaysin
+otherseasons,butnotinallseasonsandespeciallynotinthewinter. Aboutone-fourthof
+thesecondhomeusersaredefinedashighusers,whichmeansfullorlongerperiodsin
+oneormoreseasonsandatleastshorterperiodsinallotherseasons,especiallyduringthe
+heatingseason. Theheatingpracticesvary,with36%oftheusersnotheatingtheirhomes
+whenunoccupied,whileothersmaintainvaryingdegreesoftemperature. Energyefficiency
+measureswereimplementedby202ofthe673secondhomeownerssurveyed,withthe
+installationofnewheatingsystemsandenergy-efficientwindowsbeingthemostcommon.
+However,onlyabout20%addedinsulationtotheirhomes.
+4. EstimationoftheEnergySavingPotential
+4.1. ApproachforEstimatingEnergySavingPotential
+Ananalysisoftheenergysavingpotentialwasperformedbasedontheresultsfrom
+thesurvey. Theresultsshowthatpatternsofusageamongsecondhomeownersexhibit
+significantvariation,rangingfromisolatedoccasionstoshorterorlongerperiodsspanning
+overoneormultipleseasons. Understandingthesepatternsiscrucialforcomprehending
+how the second home is utilised and potentially heated. This understanding allows
+for a comparison of the impact of different energy renovation measures on the energy
+consumption of various second homes. The criteria for identifying user profiles were
+inspiredbythosedefinedby[20]. Forinstance,inthecaseofmediumusage,thefourdark
+dotsindicatethatthehouseisusedduringsummerweeks,aswellasoccasionalweekends
+Energies 2024, 17, 4493 8 of 19
+throughouttherestoftheyear. Theuserprofiles,asdefinedbyGutke(2023),arepresented
+inFigure1[36].
+Fig F u ig re u r 1 e . U 1. sUers eprropfirolefisl edsedfienfiedne bdyb GyuGtkuet,k 2e0,2230 2[336[]3.6 T].hTe hceirccilrec rleeprerepsreenstesn otsnoe nyeeayre,a arn,adn ddadrkaerkr edrodtso ts
+indinicdaitcea toenoen feulflu wlleweke eokf oufsue,s we,hwehreearse alisglhigtehrt edrodtso trseprerpesreenset nat waeweekeeknedn vdisviits. it.
+Drawing upon the outcomes of the questionnaires, wherein respondents detailed the
+duration of their stay in their second homes across various seasons, user profiles were
+assigned to the second home users. These profiles, categorised as “low”, “medium”, and
+“high”, were allocated in accordance with the criteria delineated in Table 7.
+Table 7. Description of typical use patterns for different user profiles.
+User Profile Typical Use Pattern
+A range of usage, from complete non-utilisation to extended durations in
+the summer and shorter intervals or isolated days in other seasons.
+Low
+However, it does not extend to all seasons, particularly excluding the
+winter period.
+Extended periods in the summer, but it can also be other seasons, shorter
+Medium
+periods, or single days in other seasons, but not all seasons.
+Extended periods spanning one or more seasons and, at the very least,
+shorter durations in all remaining seasons, particularly during the
+High
+heating season, are taken into account. Single day visits are not
+considered.
+Subsequently, each second home was assigned a heating pattern based on outcomes
+from the questionnaire and an index, either as NR, signifying no renovation, or A, B, C, or
+combinations thereof, contingent upon the energy efficiency measures declared to have
+been implemented, referred to as Base case in Figure 2. The three energy efficiency
+measures are as follows: A represents window replacement, B denotes additional
+insulation of the attic or roof, and C signifies the installation of a heat pump.
+In order to make a plausible estimate of energy usage, the presumed energy demand
+was derived from the calculated energy consumption for diverse usage patterns, heating
+patterns, and measures to curtail the energy consumption of a pilot second home, as
+conducted in a separate research project [36]. The pilot second home in question was a
+poorly insulated timber house, one-and-a-half stories in height, with a total area of 100
+m2, situated on the west coast of Sweden, as depicted in Figure 3.
+The energy use in the pilot house with different user patterns, heating patterns, and
+energy renovation measures was modelled using BIM Energy [38]. First, a baseline was
+simulated by calibrating the model to the actual energy use reported by the house owner,
+and then energy savings resulting from different user and heating patterns and renovation
+measures were modelled. The energy renovation measures were as follows: A: changing
+windows to ones with a U-value of 1.1 W/(m2·K); B: insulating the roof or attic, depending
+on whether it is a cold or warm attic; and C: installing an air-sourced heat pump (ASHP).
+The estimated energy consumptions for the pilot house are presented in Table 8. This
+estimation is predicated on users(cid:31) behavioural patterns, heating regimens, and
+implementation of energy-efficiency measures, as reported by the 673 respondents. These
+factors were categorised according to indices NR, A, B, and C or a combination thereof.
+Energies2024,17,4493 8of18
+Drawingupontheoutcomesofthequestionnaires,whereinrespondentsdetailedthe
+duration of their stay in their second homes across various seasons, user profiles were
+assignedtothesecondhomeusers. Theseprofiles,categorisedas“low”,“medium”,and
+“high”,wereallocatedinaccordancewiththecriteriadelineatedinTable7.
+Table7.Descriptionoftypicalusepatternsfordifferentuserprofiles.
+UserProfile TypicalUsePattern
+Arangeofusage,fromcompletenon-utilisationtoextendeddurations
+inthesummerandshorterintervalsorisolateddaysinotherseasons.
+Low
+However,itdoesnotextendtoallseasons,particularlyexcludingthe
+winterperiod.
+Extendedperiodsinthesummer,butitcanalsobeotherseasons,
+Medium
+shorterperiods,orsingledaysinotherseasons,butnotallseasons.
+Extendedperiodsspanningoneormoreseasonsand,attheveryleast,
+shorterdurationsinallremainingseasons,particularlyduringthe
+High
+heatingseason,aretakenintoaccount.Singledayvisitsare
+notconsidered.
+Subsequently,eachsecondhomewasassignedaheatingpatternbasedonoutcomes
+Energies 2024, 17, 4493 9 of 19
+fromthequestionnaireandanindex,eitherasNR,signifyingnorenovation,orA,B,C,or
+combinationsthereof,contingentupontheenergyefficiencymeasuresdeclaredtohave
+beenimplemented,referredtoasBasecaseinFigure2.Thethreeenergyefficiencymeasures
+Consequently, presumed energy consumption was apportioned to each secondary
+areasfollows: Arepresentswindowreplacement,Bdenotesadditionalinsulationofthe
+residence for which a user referenced in this study.
+atticorroof,andCsignifiestheinstallationofaheatpump.
+FFiigguurree 22.. UUsseerr ppaatttteerrnnss aanndd hheeaattiinngg ppaatttteerrnnss ffoorr tthhee bbaassee ccaassee aanndd eenneerrggyy rreennoovvaattiioonn sscceennaarriiooss ffoorr
+tthhee 667733 sseeccoonndd hhoommeess iinn tthhiiss ssttuuddyy..
+Figure 3. The second home in Sweden that was used as a pilot house for energy simulations [36].
+Table 8. Estimated energy use expressed as kWh/m2, year for different user and heating patterns
+and energy renovation measures for a pilot second home, based on calculations by Gutke (2023)
+[36].
+User (1) and
+Heating (2) NR (3) A (3) B (3) C (3) AB (3) AC (3) BC (3) ABC (3)
+Pattern
+low 15 101.7 97.6 81.3 28.9 77.3 27.8 23.3 22.2
+low 10 58.7 56.3 46.4 16.3 44.2 15.6 13.1 12.5
+low 5 27.2 26.2 21.5 8.5 20.5 8.2 7.1 6.8
+Energies 2024, 17, 4493 9 of 19
+Consequently, presumed energy consumption was apportioned to each secondary
+residence for which a user referenced in this study.
+Energies2024,17,4493 9of18
+Inordertomakeaplausibleestimateofenergyusage,thepresumedenergydemand
+wasderivedfromthecalculatedenergyconsumptionfordiverseusagepatterns,heating
+patterns, and measures to curtail the energy consumption of a p ilot second home, as
+conductedinasepaFriagtuerer e2s. eUaserrc hpaptterronjse catnd[3 h6e]a.tiTngh peaptteilronts fsoerc tohne dbahseo cmasee ainndq euneersgtyio rnenwovaatsioan scenarios for
+poorlyinsulatedtimbtheer 6h73o suesceo,nod nheo-maensd in-a t-hhisa sltfusdtyo. riesinheight,withatotalareaof100m2,
+situatedonthewestcoastofSweden,asdepictedinFigure3.
+Figure3.ThesecondhFoimguerein 3.S Twheed seecnotnhda htowmaes iun sSewdeadsena tphialot wthaso uusseedf oars ae npeilrogty hosiumseu floart ieonnesrg[y3 6s]im. ulations [36].
+The energy useTaibnlet 8h. eEsptiimloattedh oenuesregyw uisteh exdpirfefsesreedn ats ukWsehr/mp2a, tyteearrn fosr, dhieffaerteinntg uspear tatnedr nhse,ating patterns
+andenergyrenovatiaonnd meneeragsyu rreensovwataiosnm moedaseulrleesd four sai npgiloBt IsMecoEndn ehrogmye,[ b3a8s]e.dF oinrs cta,lacublaatisoenlsi nbey Gutke (2023)
+wassimulatedbyca[3li6b].r atingthemodeltotheactualenergyusereportedbythehouse
+owner, andthenenerUgsyers
+(
+a
+1)
+v ainndg sresultingfromdifferentuserandheatingpatternsand
+renovationmeasuresHweearteinmg (o2) delNleRd (.3) TheAen (3e) rgyreBn o(3)v ationCm (3e) asureAsBw (3)e reaAsCfo (3l)l owBsC: (3) ABC (3)
+A:changingwindowsPtoattoenrnes withaU-valueof1.1W/(m2·K);B:insulatingtheroofor
+attic,dependingonwhelothwe r15it isa1c0o1l.d7 orw9a7r.6m attic;8a1.n3d C:in2s8t.a9l linga7n7.a3i r-sou2rc7e.8d hea2t3.3 22.2
+pump(ASHP).Theestilmowa t1e0d ene5rg8.y7 consu56m.3p tions4f6o.4r thep1i6lo.3t hous4e4a.2r epres1e5n.6t edin13.1 12.5
+Table8. Thisestimationloiws p5 redica2t7e.d2 onu2s6e.r2s ’beha21v.i5o uralp8a.5t terns,2h0e.5a tingre8g.2i mens7,.1 6.8
+andimplementationofenergy-efficiencymeasures,asreportedbythe673respondents.
+These factors were categorised according to indices NR, A, B, and C or a combination
+thereof. Consequently,presumedenergyconsumptionwasapportionedtoeachsecondary
+residenceforwhichauserreferencedinthisstudy.
+Table8. EstimatedenergyuseexpressedaskWh/m2,yearfordifferentuserandheatingpatterns
+andenergyrenovationmeasuresforapilotsecondhome,basedoncalculationsbyGutke(2023)[36].
+User(1)and
+NR(3) A(3) B(3) C(3) AB(3) AC(3) BC(3) ABC(3)
+Heating(2)Pattern
+low15 101.7 97.6 81.3 28.9 77.3 27.8 23.3 22.2
+low10 58.7 56.3 46.4 16.3 44.2 15.6 13.1 12.5
+low5 27.2 26.2 21.5 8.5 20.5 8.2 7.1 6.8
+medium15 106.2 102.0 85.2 31.6 81.0 30.4 25.7 24.5
+medium10 65.8 63.2 52.7 19.9 50.2 19.2 16.4 15.7
+medium5 37.4 36.0 30.5 13.1 29.1 12.7 11.3 10.8
+high15 110.4 106.0 88.8 34.2 84.5 32.9 28.0 26.8
+high10 73.0 70.2 59.2 23.7 56.4 22.9 19.9 19.1
+high5 46.7 45.0 38.9 17.8 37.3 17.2 15.5 15.0
+(1)Userpattern:Low,medium,andhighcorrespondingtotheuserprofilesinTable1.(2)Heatingpattern:15,10
+and5referstothetemperaturethatthehouseisheatedtowhennotused.(3)NR:norenovation,A:newwindows,
+B:atticorroofinsulation,C:air-sourcedheatpump(ASHP).AB,AC,BC,andABCindicatecombinationsof
+energyrenovationmeasures.
+Giventhatthetemperatureintervalsprovidedinthemultiple-choiceoptionsinthe
+surveyslightlydeviatedfromthoseutilisedintheenergysimulationsforthepilotsecondary
+residence, it was imperative to make some assumptions. Consequently, the responses
+“>16◦C”and“11–15◦C”wereuniformlyassignedavalueof15◦C.Similarly,responses
+indicating“upto10◦C”weredesignatedas10◦C,andresponsesindicating“noheating”
+or“noanswer”wereassignedavalueof5◦C.Thisisaconsiderablesimplificationsince
+thereisasignificantdifferencebetweenheatingto5◦Candnotheatingatall,butitisthe
+bestmatchoftheavailabledatafromthesurveyandsimulations.
+Energies2024,17,4493 10of18
+In the baseline scenario, referred to as Base case in Figure 2, energy consumption
+was assigned to each individual second home based on the users’ responses regarding
+occupancypatterns(low,medium,high),thetemperaturetowhichtheyheattheirhouses
+whennotinuse,andthetypeofenergyefficiencymeasuresimplemented. Intotal,there
+weredistinctresponsesfrom673secondhomeownersandusers.Oneofthe674respondents
+was excluded because of an inconsistency caused by multiple markings. In the second
+scenario,itwasassumedthatalluserslowerthetemperatureto5◦Cwhentheirhousesare
+notinuse,andnewenergyusagelevelsfromthetable’srowsfor5◦Cwereassignedtoeach
+individualsecondhome. Inthethirdscenario,itwasassumedthatallusersundertooka
+windowreplacement,exceptforthosewhoalreadyindicatedthattheyhaddoneso. Inthe
+fourthscenario,itwasassumedthatallsecondhomeusersinstalledadditionalinsulation
+intheatticorroof,exceptforthosewhoalreadyindicatedthattheyhaddoneso. Inthe
+fifthscenario,itwasassumedthatallsecondhomeshaveaheatpumpinstalled,except
+thosethatalreadyhaveone. Iftherespondentspecifiedthattheheatingmethodisa“heat
+pump” but did not declare an energy efficiency measure of “installed heat pump”, the
+energy usage for case C or a combination of C was used regardless. Based on this, the
+totalenergyusageandaverageusageforthedifferentscenarioswerecalculatedforthe
+673secondhomes. Fromthecalculationsofenergysavingsresultingfromeachenergy
+efficiencymeasure,ageneralestimationwasmadeoftheenergy-savingpotentialamong
+thesecondhomeuserswhorespondedtothesurvey. Ifoneassumesthatthe673second
+homesconstitutearepresentativesampleofsecondhomesinSweden,theresultscanbe
+extrapolatedtoestimatenotonlytheenergyusagebutalsotheenergysavingpotentialof
+theentirestockofSwedishsecondhomes,consistingofapproximately610,000houses.
+4.2. EstimatedEnergySavingPotential
+Estimatedenergyuse,asdetailedinTable8,wasassignedtoeachoftherespondent’s
+second homes. This allocation was based on the user pattern (low, medium, or high,
+referringtouserprofiles),thetemperaturetowhichtheusersheattheirhouseswhennotin
+use,andtherenovationandenergyrenovationmeasurescarriedout,asdepictedinFigure4.
+Energies 2024, 17, 4493 11 of 19
+Subsequently,averageenergyusagewascomputedforthe673respondents’secondhomes,
+asshowninTable4. Followingthis,theenergyusagefortheentirestockofsecondhomes
+wasestimatedbysimplymultiplyingtheaverageenergyusageforthesampleof673houses
+approximately 610,000, as per Table 2. The low values for “high users” represent
+bythetotalnumberofsecondhomesinSweden,whichisapproximately610,000,asper
+households that installed a heat pump, carried out other energy renovation measures, and
+Table2. Thelowvaluesfor“highusers”representhouseholdsthatinstalledaheatpump,
+did not heat their houses when not in use. Conversely, the high values for “low users”
+carriedoutotherenergyrenovationmeasures,anddidnotheattheirhouseswhennotin
+represent those who did not carry out energy renovation measures and heat their houses
+use. Conversely,thehighvaluesfor“lowusers”representthosewhodidnotcarryout
+to e 1 n 1– e 1 rg 5 y °C re o n r o m va o t r io e n w m he e n as n u o r t e s in a u n s d e h . eattheirhousesto11–15◦Cormorewhennotinuse.
+Figure4.Estimatedenergyuseforeachofthe673secondhomes(x-axis)basedontheenergyusage
+Figure 4. Estimated energy use for each of the 673 second homes (x-axis) based on the energy usage
+calculatedforthepilotsecondaryresidence,asdetailedinTable8.
+calculated for the pilot secondary residence, as detailed in Table 8.
+In the subsequent stage, the energy usage for the pilot house, assuming that one of
+the energy efficiency measures was implemented, was assigned to the 673 second homes,
+as illustrated in Figures 5–8.
+Figure 5. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+calculated for the pilot house in Table 8, under the assumption that a temperature of 5 °C was
+sustained during periods of non-occupancy.
+In light of this, a comprehensive estimation was conducted to ascertain the potential
+energy savings among the 673 second homeowners who participated in the survey, as
+indicated in the second row of Table 4. Assuming that these 673 secondary homes are a
+representative sample of second homes in Sweden, the findings were extrapolated to
+estimate the energy saving potential for the entire stock of approximately 610,000 second
+homes, as shown in the third row of Table 9.
+Energies 2024, 17, 4493 11 of 19
+approximately 610,000, as per Table 2. The low values for “high users” represent
+households that installed a heat pump, carried out other energy renovation measures, and
+did not heat their houses when not in use. Conversely, the high values for “low users”
+represent those who did not carry out energy renovation measures and heat their houses
+to 11–15 °C or more when not in use.
+Energies2024,17,4493 Figure 4. Estimated energy use for each of the 673 second homes (x-axis) based on the energy usage 11of18
+calculated for the pilot secondary residence, as detailed in Table 8.
+In the subsequent stage, the energy usage for the pilot house, assuming that one of
+Inthesubsequentstage,theenergyusageforthepilothouse,assumingthatoneofthe
+the energy efficiency measures was implemented, was assigned to the 673 second homes,
+energyefficiencymeasureswasimplemented,wasassignedtothe673secondhomes,as
+as illustrated in Figures 5–8.
+illustratedinFigures5–8.
+Figure 5. Estimated energy use for each of the 673 second homes (x-axis), based on the energy
+E nergies 2024, 17, 4493 Fig u u s r e e c 5 a . l E cu st l i a m te a d ted fo e r n t e h r e gy p i u l s o e t f h o o r u e s a e ch in of T t a h b e l e 67 8 3 , u se n c d on e d r t h h o e m a e s s s u (x m -a p xi t s i ) o , n ba th se a d t o a n t e t m he p e e n r e a 1r2 t g u yo r f e u 1s o 9e f 5◦Cwas
+calculated for the pilot house in Table 8, under the assumption that a temperature of 5 °C was
+sustainedduringperiodsofnon-occupancy.
+sustained during periods of non-occupancy.
+In light of this, a comprehensive estimation was conducted to ascertain the potential
+energy savings among the 673 second homeowners who participated in the survey, as
+indicated in the second row of Table 4. Assuming that these 673 secondary homes are a
+representative sample of second homes in Sweden, the findings were extrapolated to
+estimate the energy saving potential for the entire stock of approximately 610,000 second
+homes, as shown in the third row of Table 9.
+Figure 6. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+calculated for the pilot house in Table 8, under the assumption that all users install new windows.
+120
+100
+80
+60
+40
+20
+0
+0 100 200 300 400 500 600 700
+Figure 7. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+calculated for the pilot house in Table 8, under the assumption that all users install additional
+insulation in the attic or roof.
+Figure 8. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+calculated for the pilot house in Table 8, under the assumption that users all install a heat pump.
+raey
+,2m/hWk
+Energies 2024, 17, 4493 12 of 19
+FigFuirgeu 6r. eE6st.imEsattiemd aetneedrgeyn eursge yfour seeacfohr oef athche 6o7f3t hseec6o7n3d sheocmonesd (xh-oamxise)s, b(xa-saexdi so)n, bthaes eedneorgnyt huesee nergyuse
+calculated for the pilot house in Table 8, under the assumption that all users install new windows.
+calculatedforthepilothouseinTable8,undertheassumptionthatallusersinstallnewwindows.
+120
+100
+80
+60
+40
+20
+0
+0 100 200 300 400 500 600 700
+High Medium Low
+Figure 7. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+calculated for the pilot house in Table 8, under the assumption that all users install additional
+insulation in the attic or roof.
+Figure 8. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+calculated for the pilot house in Table 8, under the assumption that users all install a heat pump.
+raey
+,2m/hWk
+High Medium Low
+Figure 7. Estimated energy use for each of the 673 second homes (x-axis), based on the energy
+usecalculatedforthepilothouseinTable8,undertheassumptionthatallusersinstalladditional
+insulationintheatticorroof.
+Energies 2024, 17, 4493 12 of 19
+Figure 6. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+calculated for the pilot house in Table 8, under the assumption that all users install new windows.
+120
+100
+80
+60
+40
+20
+0
+0 100 200 300 400 500 600 700
+Figure 7. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+Energies2024,17,4493 calculated for the pilot house in Table 8, under the assumption that all users install additional 12of18
+insulation in the attic or roof.
+Figure 8. Estimated energy use for each of the 673 second homes (x-axis), based on the energy use
+calculated for the pilot house in Table 8, under the assumption that users all install a heat pump.
+raey
+,2m/hWk
+High Medium Low
+Figure8.Estimatedenergyuseforeachofthe673secondhomes(x-axis),basedontheenergyuse
+calculatedforthepilothouseinTable8,undertheassumptionthatusersallinstallaheatpump.
+Inlightofthis,acomprehensiveestimationwasconductedtoascertainthepotential
+energy savings among the 673 second homeowners who participated in the survey, as
+indicated in the second row of Table 4. Assuming that these 673 secondary homes are
+arepresentativesampleofsecondhomesinSweden, thefindingswereextrapolatedto
+estimatetheenergysavingpotentialfortheentirestockofapproximately610,000second
+homes,asshowninthethirdrowofTable9.
+Table9.Estimatedenergyusereportedbytheownersofthe673secondhomesforthecurrentstatus
+and after different energy efficiency measures were implemented. Results are also scaled up to
+estimatethetotalenergysavingpotentialfortheentireSwedishsecondhomestock.
+EstimatedAverage TemperatureIsKept AllHousesChange AllHousesInstall
+EnergyUsefor CurrentStatus at5◦C(1)When toEnergy Roofor AllHousesInstalla
+DeclaredbyUsers HeatPump(3)
+DifferentScenarios HouseIsNotUsed EfficientWindows AtticInsulation
+Averageenergyuse
+inkWhperm2and
+44.2 25 42.7 36 19.6
+yearforthesampleof
+673secondhomes
+Totalenergyusein
+TWhscaleduptothe
+entirestockof 2.7 1.5 2.6 2.2 1.2
+610,000second
+homes(2)
+Totalenergysaving
+potentialinTWhand
+1.2(44%) 0.1(4%) 0.5(19%) 1.5(56%)
+inpercentageof
+currentuse
+(1)Thetemperatureisassumedtobe5◦Cwhenahouseisnotused,whichbasicallymeansverylowornoheating.
+(2)Iftherespondentreportedaheatpumpasthemainheatingsystembutdidnotreportaheatpumpasan
+energy-efficiencymeasure,theenergyuseforcaseC(heatpump)oracombinationincludingCwasused.(3)The
+assumptionisthattheaveragesecondhomeis100m2forthesakeofsimplicity.
+4.3. SummaryofEstimatedEnergySavingPotential
+Thecalculationsofenergysavingsasaresultofimplementingdifferentenergyreno-
+vationmeasures,basedonapilothouserepresentinganaverageSwedishsecondhome,
+suggestsignificantenergy-savingpotential. Itisimportanttostressthattheassumption
+thatthepilothouserepresentsanaveragesecondhomeisagrosssimplification. Theresults
+showthatthegreatestsavingscouldbeachievedbyinstallingheatpumpsinallsecond
+homes that do not yet have one installed and by lowering the temperature to around
+5 ◦C when the second homes are unoccupied. However, this study also highlights the
+environmentalfootprintofsuchmeasures,particularlythemanufactureofheatpumps[36].
+Therefore,thesuggestionistomaintainalowindoortemperatureforextendedperiods
+Energies2024,17,4493 13of18
+whenasecondhomeisunoccupied,whichcouldleadtosubstantialenergysavings,pro-
+videdmeasuresaretakentopreventdamagesuchasmouldgrowthorthefreezingofpipes.
+Renovations,particularlyofwindows,façades,androofs,canalsocontributetoenergy
+efficiency,buttheseinterventionsmustbeassessedwithconsiderationofcultural–historical
+valuesofthehomes. Basedonthecalculatedenergyusefordifferentoperatingcases,user
+patterns,andimplementedenergyrenovationmeasures,thetotalenergyconsumptionby
+the673secondhomesthattheusersreferredtointhesurveywascalculated. Inaddition,
+assuming that these second homes are a representative sample of the Swedish second
+homestock,theenergyusefortheentirestockwascalculatedbyscalingupthenumberto
+610,000buildings,andthetotalenergyusewasthensummedupto2.7TWh.
+5. Discussion
+Thecurrentstudyslightlycontrastspreviousresearchontheusageofsecondhomes
+inSweden. Itrevealsthataccesstosecondhomesissignificantlylowerthanpreviously
+reported,withonly37%ofthepopulationhavingaccesscomparedwiththe54%reported
+in earlier studies [5,16]. This discrepancy warrants further investigation to understand
+theunderlyingfactorscontributingtothisdecline. Currentaccesstoasecondhomeis,
+however,inlinewiththeaccessreportedinNorway[15]. Thisstudyalsoprovidesinsights
+intotheusagepatternsofthesesecondhomes. Itconfirmstheexpectationthatmostpeople
+usetheirsecondhomesforextendedperiodsinthesummerandshorterperiodsinthe
+other seasons. However, there is no clear definition of what constitutes a “high user”.
+Inthisstudy,ahighuserisdefinedassomeonewhousesasecondhome,whichmeans
+extendedperiodsspanningoneormoreseasonsand,attheveryleast,shorterdurationsin
+allremainingseasons. Withthisdefinition,onlyaquarteroftheusersaredefinedashigh
+users,whichislowerthantheaverageof71daysreportedinearlierstudies[8]. Similarly,
+thereportedperiodsspentinthesecondhomeinthisstudyaremoreinlinewithnumbers
+reportedinNorway[13].
+Interestingly, thisstudycontradictstheanticipatedtrendintheincreasedusageof
+secondhomesduetotheshifttowardsremoteworkinthewakeofthepandemic. Itwas
+expectedthattheabilitytoworkremotelywouldenableprofessionalstospendmoretime
+in their second homes. However, the findings suggest that this has not been the case.
+Thisraisesquestionsaboutthefactorsthatmightbeinhibitingprofessionalsfromtaking
+advantageofthisopportunity. Furtherresearchcouldexplorewhetherthesefactorsare
+relatedtothenatureoftheirwork,personalpreferences,orotherconstraints.
+Consideringtheemergingtrendtowardsnewsecondhomeestablishmentsonprevi-
+ouslyunexploitedland,excessiveenergyuse,andluxuryrenovations,Refs.[20–22]urge
+foractionstodecreasetheclimateimpactofthesecondhomestock, intermsofenergy
+efficiency,sourceofheating,andrenovationmeasuresundertaken. IncontrasttoNorway,
+whichincreasedlivingspace,materialuse,andstandards,butalsodoubleditsenergyuse
+overthelast30years,therewasaslightdecreaseinthetotalenergyuseintheSwedish
+secondhomestockduringthelastdecade.Eventhoughtherehavebeennationalinitiatives,
+forexample,inDenmark,aimedtoinformsecondhomeownersandactorsintheconstruc-
+tionandenergysectorsonenergy-savingrecommendations[28],onequestionstillremains
+regardinghowtoencouragesecondhomeownerstoundertakeenergyefficiencymeasures
+insteadofinteriorrenovations. Thereisdefinitelyaneedforeasy-to-accessinformation
+andguidancefortailoredenergyefficiencymeasuresintendedforsecondhomeowners
+withdifferenttypesofhouses,especiallyinSweden.
+Theresultsofthecurrentstudypresentacompellingargumentfortheinstallation
+of heat pumps in second homes as an energy-efficient measure, with an energy saving
+potential of more than 50%, supporting findings from previous studies on permanent
+residences[30]. Thisrecommendationispredicatedonthesignificantreductioninenergy
+usethatheatpumpscanfacilitate. However,whiletheinstallationofaheatpumpdoes
+involveacost,itissuggestedthatthiscostwillberecoupedovertimebecauseoftheenergy
+savings. Thisaspectoftheargumentalignswiththeeconomicprincipleofcost–benefit
+Energies2024,17,4493 14of18
+analysis,wheretheinitialinvestmentisjustifiedbylong-termbenefits.Yet,themanufacture
+ofheatpumpscontributestoasubstantialclimateimpact, asreportedbyGutke(2023),
+whichcouldamounttobetween1500and9500kgCO perunit,dependingontheextent
+2
+ofrefrigerantreuse[36]. Thisintroducesaparadoxwhereanenergy-savingmeasurealso
+contributestoclimateimpactsbecauseoftheCO emissionsinvolvedinitsproduction[36].
+2
+This discussion underscores the complexity of energy-efficiency measures, where the
+benefits of reduced energy consumption must be weighed against the climate impact
+of the solutions themselves. This highlights the need for a holistic approach to energy
+efficiency,onethatconsidersnotonlytheoperationalphasebutalsothemanufacturingand
+disposalphasesofthetechnologiesinvolved. Furtherresearchcouldexplorealternative
+manufacturing processes or technologies that could reduce the climate impact of heat
+pumps,therebymakingthemamoresustainablesolution.
+Theresultsshowanintriguingargumentforreducingindoortemperatureinsecond
+homesasasignificantenergy-savingmeasure. Thisstrategyisparticularlyeffectivewhen
+the property is infrequently occupied or used for short periods. Even though several
+insurance companies in Sweden mandate a minimum indoor temperature of 15 ◦C to
+preventfreezingandsubsequentleakageofwaterpipesandinstallations,maintaininga
+temperatureofatleast5◦Cintheentirehouseshouldnotposeanyfreezingissues.
+Apotentialconcernraisedagainstthismeasureistheriskofmouldgrowthdueto
+excessmoisture,butnosimulationsofhygrothermalconditionswereconductedinthis
+study to analyse if this is a problem or not. However, Vinha et al. (2018) demonstrate
+theinsignificanceofexcessmoistureinunoccupiedhouseswithoutadditionalmoisture
+sources[34]. Theirstudyfurthershowsthattheriskofmouldgrowthisminimalandcan
+bemanagedbyprovidingadditionalheatwhentherelativehumidityandtemperature
+exceed the critical threshold for mould growth [34,35]. This has been proven by field
+measurements in Finish log houses, installing a device that records temperature and
+humidityandautomaticallyactivatesaheatsourceoradehumidifierwhenneeded[34].
+Theapproachallowstheindoortemperaturetoremainlowforextendedperiods,resulting
+insubstantialenergysavings. Inconclusion,thisdiscussionunderscoresthepotentialof
+simple,practicalmeasuresinachievingsignificantenergyefficiency. Italsohighlightsthe
+importanceofconsideringlocalclimaticconditionsandbuildingregulationsindevising
+energy-savingstrategies. Furtherresearchcouldexplorethedevelopmentofsmartdevices
+thatcaneffectivelymanageindoorconditionstomaximiseenergysavingswhileensuring
+thestructuralintegrityoftheproperty.
+Theimplementationofenergyefficiencymeasuresonthebuildingenvelope, such
+astheinstallationofnewwindowsoradditionalinsulationintheatticorroof,hasbeen
+foundtohavearelativelylowimpactonenergyuse. Theseinterventionsentailcertain
+costsformaterialsandlabour,buttheyalsoimpacttheclimateintermsofgreenhousegas
+(GHG)emissions. AccordingtoestimatesbyGutke(2023), theseemissionscorrespond
+to 35 to 74 kg CO per m2 for windows and 0.66 to 1.14 kg CO equivalents per kg of
+2 2
+insulation[36]. However,ifthetechnicalstatusofthewindows,façade,androofispoor
+anditbecomesnecessarytoundertakerenovationstoextendthelifeofabuilding,such
+measuresshouldofcoursebeconsidered. Tosomeextent,measuresmayalsoberequired
+inkitchensandbathroomstopreventwaterdamage. However,mostrenovationsinthese
+areasareusuallyundertakentoelevatethestandardofthesecondhome. Furthermore,all
+interventionsmustbecarriedoutwithdueconsiderationofthecultural–historicalvalues
+ofthesecondhome,ifanyexist[33]. Preservationoftheexistingmaterialsandstructuresis
+oftenpreferabletotheexchangeofmaterials. Thisapproachunderscorestheimportanceof
+balancingtheneedformodernisationwiththepreservationofcultural–historicalheritage.
+Theenergydemandforthepilothouse,ascalculatedbyGutke(2023),demonstrated
+variationsrangingfrom10to110kWh/m2peryear[36]. Thesevariationsweredependent
+onuserpatterns,heatingpatterns,andtheimplementationofenergyrenovationmeasures.
+Thisissignificantlylowerthantheaveragespecificenergyuseofthe10,766secondhomes
+withanenergyperformancecertificate(EPC),whichwasestimatedtobe119kWh/m2.
+Energies2024,17,4493 15of18
+ThelikelyreasonforthisdiscrepancyisthattheEPCdeclaresenergyuseforpermanent
+occupancy,whichcanbemisleadingassecondhomesarenotusedpermanently.Incontrast,
+thecalculatedenergyusealsotookintoaccountthereporteduserandheatingpatterns.
+Thetotalenergyuseforthesecondhomestockwasestimatedbyextrapolatingtheaverage
+energy useofthe 673respondinghouseholdsto theentire Swedishsecondhome stock
+consisting of approximately 610,000 houses. The calculated energy use amounted to
+2.70 TWh per year, compared to the total energy use by second homes reported by the
+SwedishEnergyAgency,whichwas2.83TWhin2021.Despitethebroadassumptionsmade
+inthesecalculations,theestimationsappeartoberealistic. Consequently,thepotential
+energysavingscalculatedbasedonthescenarioswherevarioustypesofenergy-saving
+measureswereintroducedmaythereforealsobeconsideredreasonablyrealistic.
+6. Conclusions
+In conclusion, this study contributes valuable insights into our understanding of
+secondhomeusageinSweden,challengingsomeexistingassumptionsandhighlighting
+areasforfurtherresearch. Itunderscorestheimportanceofcontinuallyreassessingand
+investigating trends, particularly in the context of significant societal shifts such as the
+movetowardsremotework,butalsorenovationtrends. Theresultsoftheestimatedenergy
+useandpotentialsavingsseemrealisticandshowthatthemostefficientmeasure,interms
+ofcostandclimateimpact,isobviouslytodecreasethetemperaturewhenthesecondhome
+isnotinuse. Installingaheatpumpisthesecondmostenergy-andcost-effectivemeasure
+andhastheadvantagethattheindoortemperaturecanbemaintainedatratherhighlevels.
+Eventhoughloweringthetemperaturewhenthesecondhomeisunoccupiedemergesas
+themostefficientmeasure,bothintermsofcost-effectivenessandclimateimpact,itneedsto
+becomplementedwithintermittentheatingordehumidificationtoensurethattherelative
+humidityisbelowcriticallevelsandavoidtheriskofdamagescausedby, forexample,
+mouldgrowth. Furtherresearchshouldfocusontheenergysavingpotentialandclimate
+impactoftailoredenergyefficiencymeasuresfordifferenttypesofsecondhomes,climatic
+conditions, anduserpatterns. Inaddition, themoistureconditionsafterimplementing
+different measures must be analysed in detail. The findings from this study could be
+usedtodeveloprecommendationsforsecondhomeownersonenergy-efficientbehaviour
+andencouragethemtoperformenergyefficiencymeasuresandenergyrenovation,rather
+than interior renovation, taking into consideration energy use, climate impact, and the
+preservationofcultural–historicalvalues. Thefindingscanalsoencouragepolicymakersto
+encompassincentivesandrecommendationsinfutureenergyefficiencystrategies.
+Funding:Thisstudywasconductedwithintheresearchproject“Energieffektiviseringochvarsamren-
+overingavfritidshus”P2022-00125,fundedbySpara&BevarathroughTheSwedishEnergyAgency.
+DataAvailabilityStatement:Theoriginalcontributionspresentedinthestudyareincludedinthe
+article,furtherinquiriescanbedirectedtothecorrespondingauthor.
+Acknowledgments: The author acknowledges the SOM Institute for support with the practical
+distributionofthequestionnaireandcompilationofresponsesaspartoftheirnationalsurvey2023.
+Thequestionswereformulatedandanalysedbytheauthor.
+ConflictsofInterest:Theauthordeclaresnoconflictsofinterest.
+AppendixA
+TheoriginalquestionnairetranslatedintoEnglish.
+QuestionsIncludedintheNationalSurvey.
+Doyouownorhaveaccesstoasecondhome?
+Own
+(cid:50) Haveaccessto
+(cid:50) No,anddonothaveaccessto
+(cid:50)
+Energies2024,17,4493 16of18
+Usually,howdoyoustayinthesecondhomeduringthefollowingperiods?
+OnlyaFew
+Shorter Longer
+NotatAll Occasionsduring EntirePeriod
+Periods Periods
+theDay
+Spring
+(cid:50) (cid:50) (cid:50) (cid:50) (cid:50)
+Summer
+(cid:50) (cid:50) (cid:50) (cid:50) (cid:50)
+Autumn
+(cid:50) (cid:50) (cid:50) (cid:50) (cid:50)
+Winter
+(cid:50) (cid:50) (cid:50) (cid:50) (cid:50)
+Whatisthemainheatingsysteminthesecondhome?
+Direct-actingelectricity
+(cid:50) Woodstove,tiledstove
+(cid:50) Heatpump
+(cid:50) Other
+(cid:50)
+Usually,towhattemperatureisthesecondhomeheatedwhennooneisstayingthere?
+Noheating
+(cid:50) Upto10degreesCelsius
+(cid:50) 11–15degreesCelsius
+(cid:50) 16degreesCelsiusormore
+(cid:50)
+Have you, in the last 10 years, carried out any renovations or remodelling of the
+secondhomeandifso,whichones?
+No
+(cid:50) Yes
+(cid:50) Roof
+(cid:50) Window
+(cid:50) Interiorsurfaces
+(cid:50) Ground
+(cid:50) Kitchen
+(cid:50) Facade
+(cid:50) Bathroom
+(cid:50)
+Haveyou,inthelast10years,implementedanymeasureswiththeaimofreducing
+energyconsumptioninthesecondhome?
+No
+(cid:50) Yes
+(cid:50) Energy-efficientwindows
+(cid:50) Additionalinsulationroof/attic
+(cid:50) Changingtheheatingsystem
+(cid:50) Additionalinsulationfaçade
+(cid:50) Additionalinsulationfloor/ground/foundation
+(cid:50)
+Haveyourdecisionsregardingrenovationand/orenergyefficiencybeeninfluenced
+bytheculturalhistoricalvalueofthesecondhome?
+No
+(cid:50) Yes,becausewevaluethebuilding’sculturalhistoricalvaluesourselves
+(cid:50) Yes,asthemunicipalityhashadarequirementtodoso
+(cid:50)
+Energies2024,17,4493 17of18
+References
+1. EUFitfor55:EU’sTargetofReducingNetGreenhouseGasEmissionsbyatLeast55%by2030.TheProposedPackageAimsto
+BringEULegislationinLinewiththe2030Goal.Availableonline:https://www.consilium.europa.eu/en/policies/green-deal/
+fit-for-55/(accessedon10May2024).
+2. Boverket2020. UnderlagtillDenTredjeNationellaStrateginförEnergieffektiviserandeRenovering. 2020. Availableonline:
+https://www.boverket.se/sv/om-boverket/publicerat-av-boverket/publikationer/2019/underlag-till-den-tredje-nationella-
+strategin-for-energieffektiviserande-renovering/(accessedon10May2024).
+3. COM2021.ProposalforaDIRECTIVEoftheEUROPEANPARLIAMENTandoftheCOUNCILontheEnergyPerformanceof
+Buildings.Availableonline:www.eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:52021PC0802(accessedon10
+May2024).
+4. Boverket2023. ByggnaderSomInteBehöverEnergideklareras—Energideklaration—Boverket. BuildingsforWhichEnergy
+DeclarationIsNotNeeded.SwedishBoardofHousingBuildingandPlanning.Availableonline:https://www.boverket.se/sv/
+energideklaration/energideklaration/dessa-byggnader-behover-inte-energideklareras/(accessedon10May2024).
+5. EnergyStatisticsforDwellingswithNoRegisteredPermanentResident(HolidayHomes)2011;ReportES2012:03;ISBN1654-7543.
+Availableonline:https://www.energimyndigheten.se/globalassets/statistik/officiell-statistik/statistikprodukter/energistatistik-
+for-fritidshus/energistatistik-for-fritidshus-2011.pdf(accessedon10May2024).
+6. SCBStatistikmyndigheteniSverige.InformationonSecondHomes.2022.Availableonline:https://www.scb.se/hitta-statistik/
+statistik-efter-amne/miljo/markanvandning/fritidshusomraden/(accessedon10May2024).
+7. Back,A.;Marjavaara,R.Mappinganinvisiblepopulation:Theunevengeographyofsecond-hometourism.Tour.Geogr.2017,19,
+595–611.[CrossRef]
+8. Häkkänen, L.; Ilgın, H.E.; Karjalainen, M. The Current State of the Finnish Cottage Phenomenon: Perspectives of Experts.
+Buildings2022,12,260.[CrossRef]
+9. Müller,D.Tourism,MobilityandSecondHomes:BetweenEliteLandscapeandCommonGround;AspectsofTourism.InTourism,
+MobilityandSecondHomes;AspectsofTourismSeries;Hall,M.C.,Muller,D.K.,Eds.;ChannelViewPublications:Bristol,UK,2004;
+Volume15.
+10. Müller,D.SecondHomesintheNordicCountries:BetweenCommonHeritageandExclusiveCommodity.Scand.J.Hosp.Tour.
+2007,7,193–201.[CrossRef]
+11. Mowl,G.;Barke,M.;King,H.Exploringtheheterogeneityofsecondhomesandthe‘residual’category.J.Rural.Stud.2020,79,
+74–87.[CrossRef]
+12. Tress,G.DevelopmentofSecond-HomeTourisminDenmark.Scand.J.Hosp.Tour.2002,2,109–122.[CrossRef]
+13. Lithander,J.;Tynelius,U.;Malmsten,P.;Råboc,I.;Fransson,E.RuralHousing–LandsbygdsboendeiNorge,SverigeochFinland.
+Tillväxtanalys, Rapport 05. Östersund. Nordic Council of Ministers. 2012. Available online: https://www.tillvaxtanalys.
+se/publikationer/rapport/rapportserien/2012-09-18-rural-housing----landsbygdsboende-i-sverige-norge-och-finland.html
+(accessedon10May2024).
+14. Marjavaara,R.RoutetoDestruction?SecondHomeTourisminSmallIslandCommunities.Isl.Stud.J.2007,2,27–46.[CrossRef]
+15. StatisticsNorway,2016.DetteerNorge—Hvatallerneforteller.Oslo/Kongsviger.
+16. Back,A.EndemicandDiverse:PlanningPerspectivesonSecond-homeTourism’sHeterogeneousImpactonSwedishHousing
+Markets.Hous.TheorySoc.2021,39,317.[CrossRef]
+17. Adamiak,C.;Vepsäläinen,M.;Strandell,A.;Hiltunen,M.;Pitkänen,K.;Hall,M.;Rinne,J.;Hannonen,O.;Paloniemi,R.;Åkerlund,
+U.SecondHomeTourisminFinland—PerceptionsofCitizensandMunicipalitiesonStateandDevelopmentofSecondHome
+Tourism.ReportsoftheFinnishEnvironmentInstitute22en/2015.Availableonline:https://helda.helsinki.fi/handle/10138/15
+5090(accessedon10May2024).
+18. Nordregio,2022.DatafromArchiveNordregio.se.Availableonline:https://archive.nordregio.se/en/(accessedon10May2024).
+19. Gallent,N.;Mace,A.;Tewdwr-Jones,M.SecondHomes:EuropeanPerspectivesandUKPolicies;Routledge:London,UK,2017.
+20. Berker,T.;Gansmo,H.J.Sustainableurbanisation?Norwegiancabincultureintransition.J.Tour.Cult.Chang.2010,8,172–182.
+[CrossRef]
+21. Dubois,G.Indicatorsforanenvironmentalassessmentoftourismatnationallevel.Curr.IssuesTour.2005,8,140–154.[CrossRef]
+22. Ellehauge,K.;Kildemoes,T.;Kristensen,J.;BjergenJensen,T.HeatPumpSystemforSummerHousesIfPossibleCombinedwith
+SolarHeating;VarmepumpeanlaegtilFritidshusEventueltiKombinationmedSolvarme;2006TekniskRapport;RapportNummer
+NEI-DK-4736;Denmark. Availableonline: https://energiforskning.dk/files/media/document/336-070%20Slutrapport.pdf
+(accessedon2September2024).
+23. Steffansen,R.NorwegianSecondHomePhenomenon—ACriticalPerspective. Ph.D.Thesis,AalborgUniversitet,Aalborg,
+Denmark,2017.Availableonline:https://vbn.aau.dk/da/publications/the-norwegian-second-home-phenomenon-a-critical-
+perspective(accessedon2September2024).
+24. Hiltunen,M.J.Environmentalimpactsofruralsecondhometourism–caseLakeDistrictinFinland.ScandJ.Hosp.Tour.2007,7,
+243–265.[CrossRef]
+25. Huhtala,A.;Lankia,T.Valuationoftripstosecondhomes:Doenvironmentalattributesmatter?J.Environ.PlanManag.2012,55,
+733–752.[CrossRef]
+Energies2024,17,4493 18of18
+26. Hoogendoorn,G.;Fitchett,J.M.Perspectivesonsecondhomes,climatechangeandtourisminSouthAfrica.Afr.J.Hosp.Tour.
+Leis.2018,7,1–18.
+27. Aall,C.HyttebrukogMiljø:Enarenafornøysomhetelleroverforbruk?InNorskHytteriEndring—OmBærekraftogBehag;Gansmo,
+H.J.,Berker,T.,Jørgensen,F.A.,Eds.;TapirAkademiskForlag:Trondheim,Norway,2011.
+28. Andersen,F.M.;Morthorst,P.E.;Christensen,M.S.;Kofoed,N.-U.;Jensen,O.M.Second-homeelectricityconsumption.Energy
+Policy2008,36,280–289.[CrossRef]
+29. Jensen,O.M.;Kofoed,N.-U.;RoedRasmussen,E.;Weldingh,P.;Worm,J.;AdamsRasmussen,L.;Ellehauge,K.;Kjærgaard,C.-J.;
+Reuss,M.ElbesparelseriSommerhuseherognu;SBi2010Nr.2010;SBIForlag:Hørsholm,Denmark,2010;Volume54.
+30. Mata,E.;SasicKalagasidis,A.;Johnsson,F.EnergyusageandtechnicalpotentialforenergysavingmeasuresintheSwedish
+residentialbuildingstock.EnergyPolicy2013,55,404–414.[CrossRef]
+31. Mjörnell,K.;Johansson,D.;Femenias,P.;Eriksson,P.;Donarelli,A.;Johansson,T.EnergyusepatternsandrenovationsofSwedish
+secondhomes.J.Phys.Conf.Ser.2023,2654,012011.[CrossRef]
+32. Broström,T.;Leijonhufvud,G.HeatPumpsforConservationHeating. Engineering,EnvironmentalScience2008. Available
+online:https://www.diva-portal.org/smash/get/diva2:461212/FULLTEXT02.pdf(accessedon2September2024).
+33. Eriksson,P.;Johansson,T.TowardsDifferentiatedEnergyRenovationStrategiesforHeritage-DesignatedMultifamilyBuilding
+Stocks.Heritage2021,4,4318–4334.[CrossRef]
+34. Vinha,J.;Piironen,J.;Kiviste,M.ImpactsofEnergyEfficientConstantOutputHeatingontheMoistureConditionsofUnoccupied
+SummerCottagesinFinland. InColdClimateHVAC2018;Johansson,D.,Bagge,H.,Wahlström,Å.,Eds.;CCC2018;Springer
+ProceedingsinEnergy;Springer:Cham,Switzerland,2018.
+35. Viitanen,H.;Hukka,A.Amathematicalmodelofmouldgrowthonwoodenmaterial. WoodSci. Technol. 1999,33,475–485.
+[CrossRef]
+36. Gutke,J.EnvironmentalImpactofRetrofittingSecondHomes.ACase-StudyoftheNetGlobalWarmingPotentialofDifferent
+RetrofitMeasuresinaSwedishContext.Master’sThesis,ChalmersUniversityofTechnology,Gothenburg,Sweden,2023.
+37. GöteborgsUniversitet,SOM-Institutet.DenNationellaSOMUndersökningen2022;SOM2022;SOM-Rapportnr2023:04.2024.
+Availableonline:https://snd.se/sv/catalogue/dataset/2023-10-1/1(accessedon2September2024).
+38. StruSoftAB(2022)BIMEnergy.Availableonline:https://bimenergy.com/(accessedon2September2024).
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s)andcontributor(s)andnotofMDPIand/ortheeditor(s).MDPIand/ortheeditor(s)disclaimresponsibilityforanyinjuryto
+peopleorpropertyresultingfromanyideas,methods,instructionsorproductsreferredtointhecontent.

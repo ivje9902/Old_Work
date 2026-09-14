@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  </div>
+
+  <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+  <link rel="stylesheet" href="/stylesheets/output.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+  <!-- Link to the external marked.js file for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="/javascripts/inputPage.js"></script>
+  <script src="/javascripts/script.js"></script>
+  <script src="/javascripts/response.js"></script>
+  <script src="/javascripts/dropdown.js"></script>
+  <script src="https://kit.fontawesome.com/db6d50f21f.js" crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <nav class=" w-full z-20 left-0 start-0 bg-white border border-gray-200 rounded-lg shadow-sm mt-2 text-[#00B7FF]">
+    <ul class="flex flex-row">
+      <a><img src="images/EU.png" class="h-20 p-3 col-start-1- col-end-2" alt="Logo"></a>
+      <a href="https://www.regionorebrolan.se/" target="_blank">
+        <img src="images/orebro.png" class="h-20 p-3 col-start-1- col-end-2" alt="Logo">
+      </a>
+
+      <a href="/" class="block font-bold text-xl p-6 hover:bg-blue-100" aria-current="page">Hem</a>
+      <a href="upload" class="block font-bold text-xl p-6  hover:bg-blue-100 " aria-current="page">Energianalys</a>
+
+      <button id="infoButton" onclick="toggleInfoBox('open')"
+        class="block font-bold text-[#00B7FF] text-3xl ml-auto mr-5 focus:outline-none">
+        <i class="fa-solid fa-circle-info p-2 hover:bg-gray-100 hover:rounded-full hover:cursor-pointer"></i>
+      </button>
+
+    </ul>
+  </nav>
+
+
+
+  <!-- Info Box -->
+  <div id="infobox"
+    class="hidden overflow-y-scroll overscroll-contain fixed top-5 left-5 right-5 bottom-5 opacity-100 grid-cols-10 gap-y-5 items-center justify-center rounded-lg bg-white shadow-xl border-2 border-black/25 z-50">
+    <h1 class="col-span-8 mb-auto mr-auto ml-5 mt-10 font-bold text-2xl w-fit">Välkommen till verktyget för att generera
+      energieffektiviseringsförslag!
+      <p class="font-normal text-lg">Detta verktyg är till för att du som användare ska snabbt och enkelt kunna generera
+        energieffektiviseringsförslag, <br> skräddarsydda för just din unika fastighet.</p>
+    </h1>
+
+
+    <button onclick="closeInfoBox(true)"
+      class="p-2 ml-auto my-auto text-lg rounded-lg border-gray-200 border-2 hover:cursor-pointer hover:bg-gray-300">
+      Visa inte igen
+    </button>
+
+    <button onclick="closeInfoBox(false)" class=" ml-auto mr-5 my-auto text-2xl hover:cursor-pointer outline-none">
+      <i class="fa-solid fa-circle-xmark p-1"></i>
+    </button>
+
+    <p class="col-span-10 row-span-4 mx-5 p-5 text-lg text-gray-700 bg-gray-100 rounded-lg">
+      <strong>Hur använder man verktyget?</strong><br><br>
+
+      På den här sidan fyller du i inmatningsfälten med information som matchar din bostad.
+      <br><br>
+      Du kan lämna fält tomma, så det räcker med att du fyller i fälten så gott du kan.
+      <br><br>
+      När du är klar klickar du på knappen "Generera energieffektiviseringsförslag"
+      för att få en lista med förslag på hur du kan effektivisera din energianvändning.
+      <br><br>
+      Om du vill börja om kan du klicka på knappen "Rensa" för att återställa alla fält.
+    </p>
+
+    <p class="col-span-10 row-span-4 mb-5 mx-5 p-5 text-lg text-gray-700 bg-gray-100 rounded-lg">
+      <strong>Viktig information om datainsamling</strong><br><br>
+
+      Den här hemsidan använder Google Gemini för att behandla det du skriver in. All information du matar in skickas
+      till Google och kan komma att användas för att förbättra andra Google-produkter enligt deras egna riktlinjer.
+
+      Skriv aldrig in personlig information (t.ex. namn, adress, telefonnummer eller liknande). Fyll endast i de fält
+      som efterfrågas.<br><br>
+      <strong>För mer information, vänligen läs:</strong><br><br>
+      <a href="https://policies.google.com/terms?hl=sv" target="_blank" class="text-blue-500 hover:underline">
+        Användarvillkor
+      </a><br><br>
+      <a href="https://policies.google.com/privacy?hl=sv" target="_blank" class="text-blue-500 hover:underline">
+        Sekretesspolicy
+      </a><br><br>
+    </p>
+
+
+
+
+
+  </div>
+
+
+  <script>
+    // Toggle the visibility of the info box
+    function toggleInfoBox(ans) {
+      const infoBox = document.getElementById('infobox');
+
+      if (ans == 'open') {
+        infoBox.classList.add('grid');
+        infoBox.classList.remove('hidden');
+        infoBox.focus();
+      }
+      else {
+        const cookieValue = getCookie('infoBoxClosed');
+
+        if (cookieValue) {
+        }
+        else {
+          infoBox.classList.add('grid');
+          infoBox.classList.remove('hidden');
+          infoBox.focus();
+
+        }
+
+      }
+    }
+
+
+    // Close the info box, depending on the button used to close it will decide how long the cookie will last
+    function closeInfoBox(ans) {
+      const infoBox = document.getElementById('infobox');
+
+      if (ans) {
+        infoBox.classList.add('hidden');
+        infoBox.classList.remove('grid');
+        setCookie('infoBoxClosed', 'true', 30);
+      }
+
+      else {
+        infoBox.classList.add('hidden');
+        infoBox.classList.remove('grid');
+        setCookie('infoBoxClosed', 'true');
+      }
+    }
+
+    // Close the info box when clicking outside of it
+    document.addEventListener('click', function (event) {
+      const infoBox = document.getElementById('infobox');
+      const infoButton = document.getElementById('infoButton');
+      if (!infoBox.contains(event.target) && !infoButton.contains(event.target)) {
+        infoBox.classList.add('hidden');
+      }
+    });
+  </script>
+
+
+  <div class="dropdown_menu flex justify-center items-center h-screen">
+    <!-- 
+    <div class="dropdown text-center">
+      <button class="dropbtn" id="actorButton">Välj aktör &nbsp<i
+          class="fa-solid fa-caret-down"></i></button>
+          <div class="dropdown-content divide-y divide-blue-300 rounded-lg bg-white shadow-lg border-gray-200 shadow-sm">
+        </a>
+        <a onclick="changeName('actorButton', 'Privatperson')">Privatperson</a>
+        <a onclick="changeName('actorButton', 'Offentlig aktör')">Offentlig aktör</a>
+        <a onclick="changeName('actorButton', 'Små eller medelstort företag')">Små eller medelstort företag</a>
+        <a onclick="changeName('actorButton', 'Stort företag')">Stort företag</a>
+        <a onclick="changeName('actorButton', 'Energikonsult')">Energikonsult</a>
+        <input class="other_input" type="text" id="otherActor" placeholder="Övrigt">
+      </div>
+    </div>-->
+    <div class="flex flex-wrap gap-1 w-full">
+
+      <div class="dropdown">
+        <button class="dropbtn" id="houseButton">Typ av byggnad &nbsp;<i class="fa-solid fa-caret-down"></i></button>
+        <div
+          class="dropdown-content divide-y divide-blue-300 rounded-lg bg-white shadow-lg border-gray-200 shadow-sm cursor-default">
+
+          <div class="submenu-parent">
+            <a>Småhus&rarr; </a>
+            <div class="submenu">
+              <a onclick="changeName('houseButton', 'Villa')">Villa</a>
+              <a onclick="changeName('houseButton', 'Radhus')">Radhus</a>
+              <a onclick="changeName('houseButton', 'Fritidshus')">Fritidshus</a>
+              <input class="other_input" type="text" id="otherHouse" placeholder="Övrig Småhusstyp">
+
+            </div>
+          </div>
+
+
+          <div class="submenu-parent">
+            <a>Flerbostadshus&rarr; </a>
+            <div class="submenu">
+              <a onclick="changeName('houseButton', 'Hyreshus')">Hyreshus</a>
+              <a onclick="changeName('houseButton', 'Bostadsrättsförening')">Bostadsrättsförening</a>
+              <input class="other_input" type="text" id="otherHouse" placeholder="Övrig flerbostadshusstyp">
+            </div>
+          </div>
+
+
+          <a onclick="changeName('houseButton', 'Kontorsbyggnad')">Kontorsbyggnad</a>
+          <a onclick="changeName('houseButton', 'Skola eller förskola')">Skola eller förskola</a>
+
+
+          <div class="submenu-parent">
+            <a>Vård- eller omsorgsbyggnad&rarr;</a>
+            <div class="submenu">
+              <a onclick="changeName('houseButton', 'Äldreboende')">Äldreboende</a>
+              <a onclick="changeName('houseButton', 'Vårdcentral')">Vårdcentral</a>
+              <input class="other_input" type="text" id="otherHouse" placeholder="Övrig Vårdsstyp">
+            </div>
+          </div>
+
+          <a onclick="changeName('houseButton', 'Butik eller köpcentrum')">Butik eller köpcentrum</a>
+          <a onclick="changeName('houseButton', 'Hotell eller restaurang')">Hotell eller restaurang</a>
+
+
+          <div class="submenu-parent">
+            <a>Lokal för&rarr; </a>
+            <div class="submenu">
+              <a onclick="changeName('houseButton', 'Idrott')">Idrott</a>
+              <a onclick="changeName('houseButton', 'Kultur')">Kultur</a>
+              <a onclick="changeName('houseButton', 'Samlingsverksamhet')">Samlingsverksamhet</a>
+              <input class="other_input" type="text" id="otherHouse" placeholder="Övrig Lokaltyp">
+            </div>
+          </div>
+
+          <a onclick="changeName('houseButton', 'Industri- eller verkstadsbyggnad')">Industri- eller
+            verkstadsbyggnad</a>
+          <a onclick="changeName('houseButton', 'Lager- eller logistikbyggnad')">Lager- eller logistikbyggnad</a>
+
+          <input class="other_input" type="text" id="otherHouse" placeholder="Övrig byggnadstyp">
+        </div>
+      </div>
+
+
+      <div class="dropdown border-gray-200 shadow-sm">
+        <button class="dropbtn" id="varmButton">Uppvärmningssystem &nbsp<i class="fa-solid fa-caret-down"></i></button>
+        <div
+          class="dropdown-content divide-y divide-blue-300 rounded-lg bg-white shadow-lg border-gray-200 shadow-sm cursor-default">
+          <a onclick="changeName('varmButton', 'Fjärrvärme')">Fjärrvärme</a>
+          <a onclick="changeName('varmButton', 'Jord-, sjö- och bergvärmepump')">Jord-, sjö- och
+            bergvärmepump</a>
+          <a onclick="changeName('varmButton', 'Luft-vattenvärmepump')">Luft-vattenvärmepump</a>
+          <a onclick="changeName('varmButton', 'Luft-luftvärmepump')">Luft-luftvärmepump</a>
+          <a onclick="changeName('varmButton', 'Frånluftsvärmepump')">Frånluftsvärmepump</a>
+          <a onclick="changeName('varmButton', 'Direktverkande el')">Direktverkande el</a>
+          <a onclick="changeName('varmButton', 'Elpanna')">Elpanna</a>
+          <a onclick="changeName('varmButton', 'Oljepanna')">Oljepanna</a>
+          <a onclick="changeName('varmButton', 'Vedpanna')">Vedpanna</a>
+          <a onclick="changeName('varmButton', 'Pelletspanna')">Pelletspanna</a>
+          <a onclick="changeName('varmButton', 'Kombinationspanna')">Kombinationspanna</a>
+          <a onclick="changeName('varmButton', 'Kamin')">Kamin</a>
+          <input class="other_input" type="text" id="otherVarm" placeholder="Övrigt uppvärmningssystem">
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn" id="fastighetVärme">Installationer i anslutning till byggnaden &nbsp<i
+            class="fa-solid fa-caret-down"></i></button>
+        <div class="dropdown-content">
+          <div class="cbox_input">
+            <label for="cbox1">Golvvärme</label>
+            <input type="checkbox" id="cbox1">
+            <p></p>
+            <label for="cbox2">Radiatorer</label>
+            <input type="checkbox" id="cbox2">
+            <p></p>
+            <label for="cbox3">Solceller</label>
+            <input type="checkbox" id="cbox3">
+            <p></p>
+            <label for="cbox4">Solvärme</label>
+            <input type="checkbox" id="cbox4">
+            <p></p>
+            <label for="cbox5">Batterilagring (för el)</label>
+            <input type="checkbox" id="cbox5">
+            <p></p>
+            <label for="cbox6">Laddbox för elbil</label>
+            <input type="checkbox" id="cbox6">
+            <p></p>
+            <label for="cbox7">Ackumulatortank/Varmvattenberedare</label>
+            <input type="checkbox" id="cbox7">
+            <p></p>
+            <label for="cbox8">Tryckluft (Industri)</label>
+            <input type="checkbox" id="cbox8">
+            <p></p>
+            <label for="cbox9">Styr- och Övervakningssystem</label>
+            <input type="checkbox" id="cbox9">
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown border-gray-200 shadow-sm">
+        <button class="dropbtn" id="ventButton">Typ av ventilation &nbsp<i class="fa-solid fa-caret-down"></i></button>
+
+        <div class="dropdown-content divide-y divide-blue-300 rounded-md bg-white shadow-lg cursor-default">
+          <a onclick="changeName('ventButton', 'Självdrag')">Självdrag</a>
+          <a onclick="changeName('ventButton', 'Frånluft')">Frånluft</a>
+          <a onclick="changeName('ventButton', 'Till- och frånluft')">Till- och frånluft</a>
+          <a onclick="changeName('ventButton', 'FTX')">FTX (Till och Frånluftsventilation med värmeåtervinning)</a>
+          <a onclick="changeName('ventButton', 'Vet ej')">Vet ej</a>
+
+        </div>
+      </div>
+      <!-- 
+    <div class=" dropdown">
+      
+      <button class="dropbtn" id="energiButton">Energisystem &nbsp<i class="fa-solid fa-caret-down"></i></button>
+      <div class="dropdown-content divide-y divide-blue-300 rounded-lg bg-white shadow-lg border-gray-200 shadow-sm">
+        <a onclick="changeName('energiButton', 'Solkraft')">Solkraft</a>
+        <a onclick="changeName('energiButton', 'Vattenkraft')">Vattenkraft</a>
+        <a onclick="changeName('energiButton', 'Vindkraft')">Vindkraft</a>
+        <a onclick="changeName('energiButton', 'Solvärme')">Solvärme</a>
+        <a onclick="changeName('energiButton', 'Övrig energiproduktion')">Övrig energiproduktion</a>
+        <a onclick="changeName('energiButton', 'Ingen')">Ingen</a>
+        <input class="other_input" type="text" id="otherEnergi" placeholder="Övrigt energisystem">
+      </div>
+    </div>-->
+
+
+
+
+      <div class="relative inline-flex group w-[49.75%]">
+        <div class="absolute transition-all duration-1000 opacity-40 -inset-px 
+                    bg-gradient-to-r from-blue-400 via-blue-500 to-blue-500 
+                    rounded-lg blur-lg group-hover:opacity-40 group-hover:-inset-1 
+                    group-hover:duration-200 animate-tilt">
+        </div>
+
+        <div class="textbox relative w-full bg-white p-4 ">
+          <label class="labels" for="energyInput">
+            Energikonsumtion:
+            <button id="energyButton"
+              class="dropbtn text-sm px-2 py-1 w-20 h-10 justify-center bg-[#00B7FF] text-white rounded-lg">kW/h
+              &nbsp<i class="fa-solid fa-caret-down"></i>
+            </button>
+            <div
+              class="dropdown-content w-1 left-30 divide-y divide-white  rounded-md bg-[#00B7FF] text-white shadow-lg ">
+              <a onclick="changeName('energyButton', 'kW/h')" class="text-white">kW/h (Kilowattimmar)</a>
+              <a onclick="changeName('energyButton', 'MW/h')" class="text-white">MW/h (Megawattimmar)</a>
+              <a onclick="changeName('energyButton', 'GW/h')" class="text-white">GW/h (Gigawattimmar)</a>
+            </div>
+            per år
+
+          </label>
+          <input class="input w-full" id="energyInput" type="number" min="0" max="" onkeydown="preventE(event)">
+        </div>
+      </div>
+
+
+      <!-- Storlek på byggnader -->
+      <div class="relative inline-flex group w-[49.75%]">
+        <div class="absolute transition-all duration-1000 opacity-40 -inset-px 
+                    bg-gradient-to-r from-blue-400 via-blue-500 to-blue-500  
+                    rounded-lg blur-lg group-hover:opacity-40 group-hover:-inset-1 
+                    group-hover:duration-200 animate-tilt">
+        </div>
+        <div class="textbox relative w-full bg-white p-4">
+          <label class="labels pb-[16px]" for="sizeInput">Storlek på byggnad(er) (m<sup>2</sup>):</label>
+          <input class="input" id="sizeInput" type="number" min="0" max="" maxlength="6" onkeydown="preventE(event)">
+        </div>
+      </div>
+      <!-- First group with gradient -->
+      <div class="relative inline-flex group w-[49.75%]">
+        <div class="absolute transition-all duration-1000 opacity-40 -inset-px 
+          bg-gradient-to-r from-blue-400 via-blue-500 to-blue-500  
+          rounded-lg blur-lg group-hover:opacity-40 group-hover:-inset-1 
+          group-hover:duration-200 animate-tilt">
+        </div>
+        <div class="textbox relative w-full bg-white p-4">
+          <label class="labels" for="kommunInput">Kommun</label>
+          <input class="input" id="kommunInput" type="text">
+        </div>
+      </div>
+
+      <!-- Second group with gradient -->
+      <div class="relative inline-flex group w-[49.75%]">
+        <div class="absolute transition-all duration-1000 opacity-40 -inset-px 
+          bg-gradient-to-r from-blue-400 via-blue-500 to-blue-500  
+          rounded-lg blur-lg group-hover:opacity-40 group-hover:-inset-1 
+          group-hover:duration-200 animate-tilt">
+        </div>
+        <div class="textbox relative w-full bg-white p-4">
+          <label class="labels" for="yearInput">Byggnadsår:</label>
+          <input class="input" id="yearInput" type="text" placeholder="Fyrsiffrigt årtal" maxlength="4"
+            oninput="validateYearInput(this)" onkeydown="preventE(event)">
+        </div>
+      </div>
+    </div>
+
+
+
+    <script>
+      function preventE(event) {
+        if (event.key === "e" || event.key === "E" || event.key === "+" || event.key === "-") {
+          event.preventDefault();
+        }
+      }
+      function validateYearInput(input) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        // Limit the input to 4 digits
+        if (input.value.length > 4) {
+          input.value = input.value.slice(0, 4);
+        }
+      }
+    </script>
+
+    <div class="relative inline-flex group w-[960px]">
+
+      <div class="absolute transition-all duration-1000 opacity-40 -inset-px 
+              bg-gradient-to-r from-blue-400 via-blue-500 to-blue-500  
+              rounded-lg blur-lg group-hover:opacity-40 group-hover:-inset-1 
+              group-hover:duration-200 animate-tilt">
+      </div>
+
+      <div class="textbox relative w-full bg-white p-4">
+        <label for="extraInput" class="block mb-2 text-sm font-medium text-gray-700">
+          Övrig information som kan påverka energikonsumtionen.
+        </label>
+        <input
+          class="input w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          id="extraInput" type="text">
+      </div>
+    </div>
+
+
+
+    <div class="flex justify-center items-center py-2 space-x-2">
+
+      <!-- Second Button (Reset) -->
+      <div class="relative inline-flex group">
+        <div
+          class="absolute transition-all duration-1000 opacity-40 -inset-px bg-gradient-to-r from-red-400 via-orange-500 to-yellow-500 blur-lg group-hover:opacity-40 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+        </div>
+        <button onclick="resetValues()"
+          class="relative inline-flex items-center justify-center w-64 h-24  text-xl font-bold text-red-400 transition-all duration-200 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400">
+          Rensa inmatningsfälten
+        </button>
+      </div>
+
+      <!-- First Button (Generate) -->
+      <div class="relative inline-flex group">
+        <div
+          class="absolute transition-all duration-1000 opacity-40 -inset-px bg-gradient-to-r from-green-400 via-blue-500 to-cyan-500 blur-lg group-hover:opacity-40 group-hover:-inset-1 group-hover:duration-200 animate-tilt">
+        </div>
+        <button onclick="submitValues()"
+          class="relative inline-flex items-center justify-center p-5 h-24 text-xl font-bold text-blue-400 transition-all duration-200 bg-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+          Generera energieffektiviseringsförslag.
+        </button>
+      </div>
+
+
+
+
+
+
+      <script>load_index();</script>
+
+      <script>
+        document.addEventListener("keypress", function (event) {
+          if (event.key === "Enter" && event.target == document.body) {
+            document.getElementById("submit_button").click();
+          }
+        });
+      </script>
+
+
+      <!-- Cookie Consent -->
+      <div id="cookieConsent"
+        style="display: none; position: fixed; bottom: 20px; left: 20px; background: #f1f1f1; padding: 15px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <p style="margin: 0; font-size: 14px;">This website uses cookies to ensure you get the best experience.</p>
+        <button id="acceptCookies"
+          style="margin-top: 10px; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;">Accept</button>
+
+      </div>
+
+
+
+
+
+</body>
+
+
+
+</html>

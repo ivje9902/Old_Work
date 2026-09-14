@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- Link to the external jsPDF file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <!-- Link to the external marked.js file for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Link to the external JavaScript file -->
+    <script src="/javascripts/script.js"></script>
+    <script src="/javascripts/response.js"></script>
+    <script src="/javascripts/generator.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/db6d50f21f.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    
+
+    <button onclick="window.location.href = '/'">Home</button>
+
+
+    <h1>Response Page</h1>
+    <!-- Description of the page -->
+    <p>Här är dina tips för att förbättra energieffektiviteten i din byggnad:</p>
+    <p>Klicka på ett av alternativen nedan för att få en mer detaljerad förklaring.</p>
+    <p>Observera att det kan ta en stund att generera och utveckla svar.</p>
+    <!-- Placeholder for the header -->
+    <div class="header"></div>
+
+    <div class="loader" id="loader">
+    </div>
+
+
+    <!-- Container for the tips (boxes with checkboxes) -->
+    <div id="tips-container" style="margin-top: 20px;"></div>
+
+    <!-- Container for the button and spinner -->
+
+    <div id="button-container" style="margin-top: 20px;">
+        <!-- Button to process selected tips -->
+        <button id="develop-button" class="btn btn-primary btn-lg opacity-50 cursor-not-allowed" disabled>
+            Utveckla svaren
+        </button>
+
+        <!-- Loading spinner button (hidden by default) -->
+        <button id="loading-button" class="btn btn-primary btn-lg" type="button" disabled style="display: none;">
+            <span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Genererar svar...
+        </button>
+
+        <button id="guide-button" class="btn btn-primary btn-lg opacity-50 cursor-not-allowed" disabled>
+            Steg för steg guide
+        </button>
+
+        <button id="loading-guide-button" class="btn btn-primary btn-lg" type="button" disabled style="display: none;">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                style="vertical-align: middle;"></span>
+            Genererar guide...
+        </button>
+
+        <button id="energy-saving-button" class="btn btn-primary btn-lg opacity-50 cursor-not-allowed" disabled>
+            Energibesparingsberäkning
+        </button>
+
+        <button id="loading-saving-button" class="btn btn-primary btn-lg" type="button" disabled style="display: none;">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                style="vertical-align: middle;"></span>
+            Genererar energibesparingsberäkning...
+        </button>
+
+        <button id="offert-button" class="btn btn-primary btn-lg opacity-50 cursor-not-allowed" disabled>
+            Skapa offertförfrågan
+        </button>
+        <button id="loading-offert-button" class="btn btn-primary btn-lg" type="button" style="display: none;" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+                style="vertical-align: middle;"></span>
+            Genererar offert...
+        </button>
+        <button id="form-button" class="btn btn-primary btn-lg opacity-50 cursor-not-allowed"
+            onclick="openForm()">Utvärdering av verktyget</button>
+    </div>
+
+
+    <button id=" download-button"
+        style="display: inline-block; padding: 10px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer; background-color: rgb(255, 255, 255);"
+        onclick="downloadTextFile()">
+        <i class="fa-solid fa-download"></i> Ladda ner
+    </button>
+
+    <script>
+        function downloadTextFile() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const text = document.getElementById('result-text').innerText;
+
+            const margin = 20;
+            const pageWidth = doc.internal.pageSize.getWidth() - margin * 2;
+            const fontSize = 10;
+
+            doc.setFontSize(fontSize);
+
+            const lines = doc.splitTextToSize(text, pageWidth);
+
+            doc.text(lines, margin, margin);
+
+            doc.save('svar.pdf');
+        }
+
+
+    </script>
+
+    <!-- Spinner (hidden by default) -->
+    <div id="loading-spinner" class="spinner-grow" role="status"
+        style="display: none; margin-top: 20px; vertical-align: middle; ">
+        <span class="sr-only">Loading...</span>
+    </div>
+
+    <!-- Big box to display selected tips with scrollable content -->
+    <div class="result-box" style="display: none;">
+        <!-- Placeholder text for the result box -->
+
+        <p id="result-text">
+            Här kommer dina valda tips att visas.
+        </p>
+    </div>
+    <div class="result-box" id="guide-box" style="display: none;">
+        <p id="result-text2">
+        </p>
+
+    </div>
+    <div class="result-box" id="energy-saving-box" style="display: none;">
+        <p id="result-text3">
+        </p>
+
+    </div>
+
+
+
+
+    <div class="form-container" id="eval_form">
+        <div class="form">
+            <form action="/response/form" method="post">
+                <p>Hur nöjd är du med verktyget på en skala 1-5?</p>
+                <label for="1">1 - Väldigt missnöjd.
+                    <input type="radio" name="satisfaction" value="1">
+                </label>
+
+                <label for="2">2 - Relativt missnöjd
+                    <input type="radio" name="satisfaction" value="2">
+                </label>
+                <label for="3">3 - Medelmåttigt
+                    <input type="radio" name="satisfaction" value="3">
+                </label>
+                <label for="4">4 - Ganska nöjd
+                    <input type="radio" name="satisfaction" value="4">
+                </label>
+                <label for="5">5 - Väldigt nöjd
+                    <input type="radio" name="satisfaction" value="5">
+                </label>
+
+                <p>Hur många förslag var relevanta?</p>
+                <label for="">0-1
+                    <input type="radio" name="relevance" value="1">
+                </label>
+                <label for="">2-4
+                    <input type="radio" name="relevance" value="2">
+                </label>
+                <label for="">5-6
+                    <input type="radio" name="relevance" value="3">
+                </label>
+
+                <label for="extra">Vill du tillägga någonting?</label>
+                <textarea name="additional_info"></textarea>
+                <button type="submit" class="form-button">Skicka</button>
+                <button type="button" class="form-button" onclick="closeForm()">Close</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        (async () => {
+            await load_page();
+        })();
+    </script>
+
+    <div>
+        <p id="expanded-answer"></p>
+    </div>
+
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <div class="header">
+  </div>
+
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+  <!-- Link to the external marked.js file for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="/javascripts/inputPage.js"></script>
+  <script src="/javascripts/script.js"></script>
+  <script src="/javascripts/eval.js"></script>
+  <script src="/javascripts/dropdown.js"></script>
+  <script src="/javascripts/inputPage.js"></script>
+  <script src="https://kit.fontawesome.com/db6d50f21f.js" crossorigin="anonymous"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <button onclick="window.location.href = '/'">Lämna testversionen</button>
+
+  <script>
+    window.location.href = "/";
+  </script>
+
+  <h1>Utvärderingssida för RAG (Generering med databas)</h1>
+  <h2>Testversion</h2>
+
+
+  <div class="dropdown_menu">
+    <div class="dropdown">
+      <button class="dropbtn" id="actorButton">Vilken typ av aktör är du? &nbsp<i
+          class="fa-solid fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="#" onclick="changeName('actorButton', 'Privatperson')">Privatperson</a>
+        <a href="#" onclick="changeName('actorButton', 'Offentlig aktör')">Offentlig aktör</a>
+        <a href="#" onclick="changeName('actorButton', 'Små eller medelstort företag')">Små eller medelstort företag</a>
+        <a href="#" onclick="changeName('actorButton', 'Stort företag')">Stort företag</a>
+        <a href="#" onclick="changeName('actorButton', 'Energikonsult')">Energikonsult</a>
+        <input class="other_input" type="text" id="otherActor" placeholder="Övrigt">
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class=" dropbtn" id="houseButton">Typ av byggnad &nbsp<i class="fa-solid fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="#" onclick="changeName('houseButton', 'Småhus')">Småhus </a>
+        <a href="#" onclick="changeName('houseButton', 'Flerbostadshus')">Flerbostadshus</a>
+        <a href="#" onclick="changeName('houseButton', 'Lantbruksbyggnad')">Lantbruksbyggnad</a>
+        <a href="#" onclick="changeName('houseButton', 'Industribyggnad')">Industribyggnad</a>
+        <a href="#" onclick="changeName('houseButton', 'Religiös byggnad')">Religiös byggnad</a>
+        <a href="#" onclick="changeName('houseButton', 'Kontorsbyggnad')">Kontorsbyggnad</a>
+        <a href="#" onclick="changeName('houseButton', 'Offentlig sektor')">Offentligt sektor</a>
+        <input class="other_input" type="text" id="otherHouse" placeholder="Övrig byggnadstyp">
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" id="varmButton">Uppvärmningssystem &nbsp<i class="fa-solid fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="#" onclick="changeName('varmButton', 'Fjärrvärme')">Fjärrvärme</a>
+        <a href="#" onclick="changeName('varmButton', 'Jord-, sjö- och bergvärmepump')">Jord-, sjö- och
+          bergvärmepump</a>
+        <a href="#" onclick="changeName('varmButton', 'Luft-vattenvärmepump')">Luft-vattenvärmepump</a>
+        <a href="#" onclick="changeName('varmButton', 'Luft-luftvärmepump')">Luft-luftvärmepump</a>
+        <a href="#" onclick="changeName('varmButton', 'Frånluftsvärmepump')">Frånluftsvärmepump</a>
+        <a href="#" onclick="changeName('varmButton', 'Direktverkande el')">Direktverkande el</a>
+        <a href="#" onclick="changeName('varmButton', 'Elpanna')">Elpanna</a>
+        <a href="#" onclick="changeName('varmButton', 'Oljepanna')">Oljepanna</a>
+        <a href="#" onclick="changeName('varmButton', 'Vedpanna')">Vedpanna</a>
+        <a href="#" onclick="changeName('varmButton', 'Pelletspanna')">Pelletspanna</a>
+        <a href="#" onclick="changeName('varmButton', 'Kombinationspanna')">Kombinationspanna</a>
+        <a href="#" onclick="changeName('varmButton', 'Kamin')">Kamin</a>
+        <input class="other_input" type="text" id="otherVarm" placeholder="Övrigt uppvärmningssystem">
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" id="fastighetVärme">Används detta i fastigheten &nbsp<i
+          class="fa-solid fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <div class="cbox_input">
+          <label for="cbox1">Golvvärme</label>
+          <input type="checkbox" id="cbox1">
+          <label for="cbox2">Radiatorer</label>
+          <input type="checkbox" id="cbox2">
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <button class="dropbtn" id="ventButton">Typ av ventilation &nbsp<i class="fa-solid fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="#" onclick="changeName('ventButton', 'Självdrag')">Självdrag</a>
+        <a href="#" onclick="changeName('ventButton', 'Frånluft')">Frånluft</a>
+        <a href="#" onclick="changeName('ventButton', 'Till- och frånluft')">Till- och frånluft</a>
+        <a href="#" onclick="changeName('ventButton', 'FTX')">FTX</a>
+        <a href="#" onclick="changeName('ventButton', 'Vet ej')">Vet ej</a>
+      </div>
+    </div>
+
+    <div class=" dropdown">
+      <button class="dropbtn" id="energiButton">Energisystem &nbsp<i class="fa-solid fa-caret-down"></i></button>
+      <div class="dropdown-content">
+        <a href="#" onclick="changeName('energiButton', 'Solkraft')">Solkraft</a>
+        <a href="#" onclick="changeName('energiButton', 'Vattenkraft')">Vattenkraft</a>
+        <a href="#" onclick="changeName('energiButton', 'Vindkraft')">Vindkraft</a>
+        <a href="#" onclick="changeName('energiButton', 'Solvärme')">Solvärme</a>
+        <a href="#" onclick="changeName('energiButton', 'Övrig energiproduktion')">Övrig energiproduktion</a>
+        <a href="#" onclick="changeName('energiButton', 'Ingen')">Ingen</a>
+        <input class="other_input" type="text" id="otherEnergi" placeholder="Övrigt energisystem">
+      </div>
+    </div>
+
+
+    <div class="textbox">
+      <label class="labels" for="energyInput">Energikonsumption (kW/h):</label>
+      <input class="inputbox" id="energyInput" type="number" min="0" max="">
+    </div>
+
+
+    <div class="textbox">
+      <label class="labels" for="sizeInput">Storlek på byggnad(er) (m<sup>2</sup>):</label>
+      <input class="inputbox" id="sizeInput" type="number" min="0" max="">
+    </div>
+
+    <div class="textbox">
+      <label class="labels" for="kommunInput">Kommun</label>
+      <input class="inputbox" id="kommunInput" type="text">
+    </div>
+
+    <div class="textbox">
+      <label class="labels" for="yearInput">Byggnadsår:</label>
+      <input class="inputbox" id="yearInput" type="number" min="0" max="">
+      <script>
+        const d = new Date();
+        document.getElementById('yearInput').setAttribute('max', d.getFullYear());
+        console.log(document.getElementById('yearInput').max);
+      </script>
+    </div>
+
+    <div class="textbox" style="width: 100%;">
+      <label for="extraInput">Övrig information om fastigheten kopplat till energianvändningen.</label>
+      <input class="inputbox" id="extraInput" type="text">
+    </div>
+
+    <button class="submit" onclick="submitValues_testversion()" id="submit_button">Generate</button>
+    <script>load_index();</script>
+    <script>
+      document.addEventListener("keypress", function (event) {
+        if (event.key === "Enter" && event.target == document.body) {
+          document.getElementById("submit_button").click();
+        }
+      });
+    </script>
+
+    <!-- Cookie Consent -->
+    <div id="cookieConsent"
+      style="display: none; position: fixed; bottom: 20px; left: 20px; background: #f1f1f1; padding: 15px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+      <p style="margin: 0; font-size: 14px;">This website uses cookies to ensure you get the best experience.</p>
+      <button id="acceptCookies"
+        style="margin-top: 10px; padding: 5px 10px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer;">Accept</button>
+
+    </div>
+
+
+    <button onclick="window.location.href = '/response'" style="display: none;">Goto response
+      page</button>
+
+
+</body>
+
+
+
+</html>

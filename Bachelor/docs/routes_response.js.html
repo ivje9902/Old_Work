@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: routes/response.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: routes/response.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var express = require('express');
+var router = express.Router();
+const { processQuestion,
+    processExpand,
+    processOffert,
+    processGuide,
+    processSaving,
+    processForm } = require('../service/processPosts');
+
+/**
+ * GET /response
+ * Renders response page. 
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {void}
+ */
+router.get('/', function (req, res, next) {
+    res.render('response', { title: 'Express' });
+});
+
+/**
+ * POST /question
+ * Handles the question post request and processes the input.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void}
+ * @throws {Error} If there is an error handling the request.
+ */
+router.post('/question', async (req, res) => {
+    try {
+        console.log("Question post received");
+        if (!req.body.inputs) {
+            return res.status(400).json({ error: 'Prompt is required' });
+        }
+
+        console.log("Request is being processed...");
+        const inputs = req.body.inputs;
+
+        const { tips, tipsRAG } = await processQuestion(inputs);
+
+        console.log("Request processed successfully");
+
+        const mode = inputs.mode || "no-RAG";
+        // Adjust the response based on the mode
+        if (mode === "both") {
+            res.status(200).json({ tips, tipsRAG, mode });
+        } else if (mode === "no-RAG") {
+            res.status(200).json({ tips, mode });
+        } else if (inputs.mode === "with-RAG") {
+            res.status(200).json({ tipsRAG, mode });
+        } else {
+            res.status(400).json({ error: "Invalid mode" });
+        }
+
+    } catch (error) {
+        console.error('Error handling question:', error);
+        res.status(500).json({ error: 'Error generating response' });
+    }
+});
+
+/**
+ * POST /expand
+ * Handles the expand post request and processes the input.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void}
+ * @throws {Error} If there is an error with generating response.
+ */
+router.post('/expand', async (req, res) => {
+    try {
+        console.log("Expand post received");
+        console.log("Request body:", req.body.inputs);
+        if (!req.body.inputs.input &amp;&amp; (req.body.inputs.ansInput == undefined &amp;&amp; req.body.inputs.ragInput == undefined)) {
+            return res.status(400).json({ error: 'Prompt is required' });
+        }
+
+        // TODO: change name of input 
+        const context = req.body.inputs.context || "";
+        const input = req.body.inputs.input || [];
+        const mode = req.body.inputs.mode || "no-RAG";
+
+        console.log("context:", context);
+
+        const noRAGInput = req.body.inputs.ansInput || [];
+        const RAGInput = req.body.inputs.ragInput || [];
+
+        console.log("Request is being processed...");
+        const { expanded, expandedRAG } = await processExpand(input, noRAGInput, RAGInput, context, mode);
+        console.log("Expanded:", expanded);
+
+        console.log("Request processed successfully");
+        res.status(200).json({ expanded, expandedRAG })
+
+    } catch (error) {
+        console.error("Problem with generation", error);
+        res.status(500).json({ error: 'Error generating response' });
+
+    }
+});
+
+
+/**
+ * Function to handle processing of offert, gudie, and saving requests.
+ * @async
+ * @param {Object} req - The request object. 
+ * @param {Object} res - The response object.
+ * @param {Function} processFunction - The function that handles processing of the request.
+ * @param {String} processType - The type of process (offert, guide, saving).
+ * @returns {void}
+ * @throws {Error} If there is an error with generating response.
+ */
+async function handleGeneration(req, res, processFunction, processType) {
+    try {
+        console.log(`${processType} post received`);
+        if (!req.body.inputs) {
+            return res.status(400).json({ error: 'Prompt is required' });
+        }
+
+        const context = req.body.inputs.context || "";
+        const input = req.body.inputs.input || [];
+        const mode = req.body.inputs.mode || "no-RAG";
+
+        console.log("Request is being processed...");
+        const { answer } = await processFunction(input, context, mode);
+
+        console.log("Request processed successfully");
+        res.status(200).json({ answer: answer });
+
+    } catch (error) {
+        console.error("Problem with generation", error);
+        res.status(500).json({ error: 'Error generating response' });
+
+    }
+}
+
+/**
+ * POST /offert
+ * Handles the offert post request and processes the input.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void}
+ * @throws {Error} If there is an error with generating response.
+ */
+router.post('/offert', async (req, res) => {
+    try {
+        return handleGeneration(req, res, processOffert, "offert");
+
+    } catch (error) {
+        console.error("Problem with generating Offert", error);
+        res.status(500).json({ error: 'Error when generating Offert' });
+    }
+});
+
+
+/**
+ * POST /guide
+ * Handles the guide post request and processes the input.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void}
+ * @throws {Error} If there is an error with generating response.
+ */
+router.post('/guide', async (req, res) => {
+    try {
+        return handleGeneration(req, res, processGuide, "guide");
+
+    } catch (error) {
+        console.error("Problem with generating Guide", error);
+        res.status(500).json({ error: 'Error when generating Guide' });
+    }
+
+});
+
+/**
+ * POST /saving
+ * Handles the saving post request and processes the input.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void}
+ * @throws {Error} If there is an error with generating response.
+ */
+router.post('/saving', async (req, res) => {
+    try {
+        return handleGeneration(req, res, processSaving, "saving");
+
+    } catch (error) {
+        console.error("Problem with generating Saving", error);
+        res.status(500).json({ error: 'Error when generating Saving' });
+    }
+});
+
+/**
+ * POST /form
+ * Handles the form post request and processes the input.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {void}
+ * @throws {Error} If there is an error with generating response.
+ */
+router.post('/form', async (req, res) => {
+    try {
+        console.log("Form post received");
+
+        const { satisfaction, relevance, additional_info } = req.body;
+
+        const inputs = {
+            satisfaction,
+            relevance,
+            additional_info
+        };
+
+        await processForm(inputs);
+
+        res.status(200).json({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.error("Problem with form", error);
+        res.status(500).json({ error: 'Error with form' });
+    }
+});
+
+
+module.exports = router;
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addRAGContext">addRAGContext</a></li><li><a href="global.html#checkIfDocumentInDatabase">checkIfDocumentInDatabase</a></li><li><a href="global.html#chunkDocument">chunkDocument</a></li><li><a href="global.html#cleanJsonString">cleanJsonString</a></li><li><a href="global.html#cleanUpFile">cleanUpFile</a></li><li><a href="global.html#client">client</a></li><li><a href="global.html#constructUploadPrompt">constructUploadPrompt</a></li><li><a href="global.html#excelToJson">excelToJson</a></li><li><a href="global.html#generateAndParseContent">generateAndParseContent</a></li><li><a href="global.html#generateContentWithGemini">generateContentWithGemini</a></li><li><a href="global.html#generateEmbeddings">generateEmbeddings</a></li><li><a href="global.html#getPromptById">getPromptById</a></li><li><a href="global.html#handleGeneration">handleGeneration</a></li><li><a href="global.html#insertDatabase">insertDatabase</a></li><li><a href="global.html#isValidFileType">isValidFileType</a></li><li><a href="global.html#loadPDF">loadPDF</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#makePrompt">makePrompt</a></li><li><a href="global.html#makePromptExpand">makePromptExpand</a></li><li><a href="global.html#makePromptQuestion">makePromptQuestion</a></li><li><a href="global.html#makePromptSaving">makePromptSaving</a></li><li><a href="global.html#processExcelFile">processExcelFile</a></li><li><a href="global.html#processExpand">processExpand</a></li><li><a href="global.html#processGeneration">processGeneration</a></li><li><a href="global.html#processGuide">processGuide</a></li><li><a href="global.html#processOffert">processOffert</a></li><li><a href="global.html#processPdfFile">processPdfFile</a></li><li><a href="global.html#processQuestion">processQuestion</a></li><li><a href="global.html#processSaving">processSaving</a></li><li><a href="global.html#retryApiCall">retryApiCall</a></li><li><a href="global.html#saveEmbedding">saveEmbedding</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#uploadFileToGemini">uploadFileToGemini</a></li><li><a href="global.html#vectorSearch">vectorSearch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 14:08:44 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

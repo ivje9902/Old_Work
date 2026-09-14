@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: insertDatabase.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: insertDatabase.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const fs = require('fs');
+const {generateEmbeddings, saveEmbedding} = require('./embeddingHandle');
+const { Document } = require('@langchain/core/documents');
+const { CharacterTextSplitter, RecursiveCharacterTextSplitter } = require('@langchain/textsplitters');
+const { PDFLoader } = require("@langchain/community/document_loaders/fs/pdf");
+const { v4: uuidv4 } = require('uuid');
+const { fileLoader } = require('ejs');
+const { CosmosClient } = require('@azure/cosmos');
+const { unsubscribe } = require('diagnostics_channel');
+const pdf = require('pdf-parse');
+const path = require('path');
+const cosmosClient = new CosmosClient({
+    endpoint: process.env.COSMOS_ENDPOINT,
+    key: process.env.COSMOS_KEY
+});
+const database = cosmosClient.database('rag-database');
+const container = database.container('chunks');
+
+
+/**
+ * Checks if a document with the given path already exists in the Cosmos DB.
+ * 
+ * @param {string} path - The file path to check in the database.
+ * @returns {Promise&lt;boolean>} A promise that resolves to `true` if the document exists, otherwise `false`.
+ * @throws {Error} If the path is invalid or the database query fails.
+ */
+async function checkIfDocumentInDatabase(path) {
+    if (!path) {
+        throw Error('Path is required');
+    }
+    if (typeof path !== 'string') {
+        throw Error('Path must be a string');
+    }
+    if (path === '') {
+        throw Error('Path cannot be empty');
+    }
+    const query = {
+        query: `SELECT * FROM c WHERE c.metadata.source = @path`,
+        parameters: [
+            { name: '@path', value: path }
+        ]
+    };
+    return await container.items
+        .query(query, { enableCrossPartitionQuery: true })
+        .fetchAll()
+        .then(result => {
+            return result.resources.length > 0;
+        });
+}
+
+/**
+ * Inserts a document into the Cosmos DB by splitting it into chunks and generating embeddings for each chunk.
+ * 
+ * @param {Document} doc - The document to insert. Must be an instance of the `@langchain/core/documents` class.
+ * @returns {Promise&lt;Object>} A promise that resolves to the last inserted chunk object.
+ * @throws {Error} If the document is invalid or the insertion process fails.
+ */
+async function insertDatabase(doc) {
+    if (!doc) {
+        throw Error('Document is required');
+    }
+    if (!(doc instanceof Document)) {
+        throw Error('Document must be of type Document');
+    }
+    if (!doc.pageContent || doc.pageContent === '') {
+        throw Error('Document must have text');
+    }
+    const chunks = await chunkDocument(doc);
+    const noChunks = chunks.length;
+    process.stdout.write('\n');
+    let currentChunk = 0;
+    for (const documentChunk of chunks) {
+        currentChunk ++;
+        process.stdout.write(`🔄 Processing chunk ${currentChunk} of ${noChunks}\r`); // Overwrite the current line
+        const embedding = await generateEmbeddings(documentChunk.pageContent); 
+        let dummyData = false;
+        let id = null;
+        if (doc.metadata.source.includes('./material/AI-generated/' || doc)) {
+            dummyData = true;
+            id = 'test-id-';
+            id += uuidv4();
+        }
+        inserted = await saveEmbedding(documentChunk.pageContent, embedding, documentChunk.metadata, dummyData, id);
+        await sleep(600);
+    }
+    return inserted;
+}
+
+/**
+ * Splits a document into smaller chunks using a recursive character text splitter.
+ * 
+ * @param {Document} doc - The document to split. Must be an instance of the `@langchain/core/documents` class.
+ * @returns {Promise&lt;Document[]>} A promise that resolves to an array of document chunks.
+ * @throws {Error} If the document is invalid or the splitting process fails.
+ */
+async function chunkDocument(doc) {
+    if (!doc) {
+        throw Error('Document is required');
+    }
+    if (!(doc instanceof Document)) {
+        throw Error('Document must be of type Document');
+    }
+    if (!doc.pageContent) {
+        throw Error('Document must have text');
+    }
+    const splitter = new RecursiveCharacterTextSplitter({
+        chunkSize: 1000,
+        chunkOverlap: 200
+    });
+
+    const documentChunks = await splitter.splitDocuments([doc]);
+    return documentChunks;
+}
+
+/**
+ * Loads a PDF file and extracts its content into a @langchain/core/documents object.
+ * 
+ * @param {string} filePath - The full file path of the PDF to load.
+ * @returns {Promise&lt;Document>} A promise that resolves to a @langchain/core/documents object containing the PDF content and metadata.
+ * @throws {Error} If the file does not exist, is not a valid PDF, or the loading process fails.
+ */
+async function loadPDF(filePath) {
+    if (!filePath || filePath === '') {
+        throw new Error('Path is required');
+    }
+    if (typeof filePath !== 'string') {
+        throw new Error('Path must be a string');
+    }
+    if (!fs.existsSync(filePath)) { 
+        throw new Error(`File not found: ${filePath}`);
+    }
+    if (!fs.lstatSync(filePath).isFile()) {
+        throw new Error(`Path is not a file: ${filePath}`);
+    }
+    if (!filePath.endsWith('.pdf')) {
+        throw new Error(`File is not a .pdf file: ${filePath}`);
+    }
+
+    const loader = new PDFLoader(filePath, {
+        splitPages: false,
+    });
+    const docs = await loader.load();
+
+    const dataBuffer = fs.readFileSync(filePath);
+    
+    // Suppress warnings during pdf-parse execution
+    const originalStderrWrite = process.stderr.write;
+    process.stderr.write = () => {}; // Suppress stderr output
+    const pdfData = await pdf(dataBuffer);
+    process.stderr.write = originalStderrWrite; // Restore stderr
+
+    let extractedUrl = '';
+    let extractedDateAccessed = '';
+
+    const subject = pdfData.info?.Subject || '';
+    if (subject.includes('Source:') &amp;&amp; subject.includes('Date Accessed:')) {
+        const parts = subject.split(',');
+        extractedUrl = parts[0].replace('Source:', '').trim();
+        extractedDateAccessed = parts[1].replace('Date Accessed:', '').trim();
+    } else {
+        extractedUrl = '';
+        extractedDateAccessed = new Date().toISOString().split('T')[0];
+    }
+
+    docs[0].metadata = {
+        ...docs[0].metadata,
+        source: filePath,
+        url: extractedUrl,
+        date_accessed: extractedDateAccessed
+    };
+
+    return docs[0];
+}
+
+/**
+ * Pauses execution for a specified amount of time.
+ * 
+ * @param {number} ms - The number of milliseconds to sleep.
+ * @returns {Promise&lt;void>} A promise that resolves after the specified time.
+ */
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Main function to process PDF files and insert their content into the Cosmos DB.
+ * 
+ * - If a specific file path is provided as a command-line argument, only that file is processed.
+ * - Otherwise, all PDF files in the default folder are processed.
+ * 
+ * @returns {Promise&lt;void>} A promise that resolves when all files are processed.
+ * @throws {Error} If any file processing or database operation fails.
+ */
+async function main() {
+    const specificFile = process.argv[2]; // Get the full file path from the command line argument
+
+    let files;
+
+    if (specificFile) {
+        // Use the provided full file path directly
+        if (!fs.existsSync(specificFile)) {
+            console.error(`❌ File not found: ${specificFile}`);
+            return;
+        }
+        files = [specificFile];
+    } else {
+        // Default to processing all files in the folder
+        const folderPath = 'material/data/';
+        files = fs.readdirSync(folderPath).map(file => path.join(folderPath, file));
+    }
+
+    for (const file of files) {
+        if (!file.endsWith('.pdf')) continue;
+
+        const filePath = file; // Use the full file path directly
+        const filename = path.basename(filePath);
+
+        if (await checkIfDocumentInDatabase(filePath)) {
+            console.log(`Document already exists in the database: ${filename}`);
+            continue;
+        }
+
+        console.log(`🔄 Processing file: ${filename}`);
+        let document;
+        try {
+            document = await loadPDF(filePath);
+        } catch (error) {
+            console.error(`Error loading PDF: ${error.message}`);
+            continue;
+        }
+        if (!document) {
+            console.log(`❌ Failed to load document: ${filename}`);
+        } else {
+            await insertDatabase(document);
+            console.log(`✅ Finished processing file: ${filename}`);
+        }
+    }
+}
+
+if (require.main === module) {
+    main()
+        .catch(err => console.error(err));
+}
+
+module.exports = {
+    checkIfDocumentInDatabase,
+    insertDatabase,
+    chunkDocument,
+    loadPDF
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addRAGContext">addRAGContext</a></li><li><a href="global.html#checkIfDocumentInDatabase">checkIfDocumentInDatabase</a></li><li><a href="global.html#chunkDocument">chunkDocument</a></li><li><a href="global.html#cleanJsonString">cleanJsonString</a></li><li><a href="global.html#cleanUpFile">cleanUpFile</a></li><li><a href="global.html#client">client</a></li><li><a href="global.html#constructUploadPrompt">constructUploadPrompt</a></li><li><a href="global.html#excelToJson">excelToJson</a></li><li><a href="global.html#generateAndParseContent">generateAndParseContent</a></li><li><a href="global.html#generateContentWithGemini">generateContentWithGemini</a></li><li><a href="global.html#generateEmbeddings">generateEmbeddings</a></li><li><a href="global.html#getPromptById">getPromptById</a></li><li><a href="global.html#handleGeneration">handleGeneration</a></li><li><a href="global.html#insertDatabase">insertDatabase</a></li><li><a href="global.html#isValidFileType">isValidFileType</a></li><li><a href="global.html#loadPDF">loadPDF</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#makePrompt">makePrompt</a></li><li><a href="global.html#makePromptExpand">makePromptExpand</a></li><li><a href="global.html#makePromptQuestion">makePromptQuestion</a></li><li><a href="global.html#makePromptSaving">makePromptSaving</a></li><li><a href="global.html#processExcelFile">processExcelFile</a></li><li><a href="global.html#processExpand">processExpand</a></li><li><a href="global.html#processGeneration">processGeneration</a></li><li><a href="global.html#processGuide">processGuide</a></li><li><a href="global.html#processOffert">processOffert</a></li><li><a href="global.html#processPdfFile">processPdfFile</a></li><li><a href="global.html#processQuestion">processQuestion</a></li><li><a href="global.html#processSaving">processSaving</a></li><li><a href="global.html#retryApiCall">retryApiCall</a></li><li><a href="global.html#saveEmbedding">saveEmbedding</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#uploadFileToGemini">uploadFileToGemini</a></li><li><a href="global.html#vectorSearch">vectorSearch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 14:08:44 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

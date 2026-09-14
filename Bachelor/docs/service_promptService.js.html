@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: service/promptService.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: service/promptService.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const fs = require('fs');
+const path = require('path');
+const { searchDatabase, formatResults } = require('../searchDatabase');
+const { createPartFromUri } = require('./googleGeminiAPI');
+
+/**
+ * Retrieves a prompt by its ID from the prompts.txt file.
+ * @async
+ * @param {string} promptId - The ID of the prompt to retrieve.
+ * @returns {Promise&lt;string>} The content of the prompt.
+ * @throws {Error} If the prompt is not found or the file cannot be read.
+ */
+async function getPromptById(promptId) {
+    try {
+        const filePath = path.join(__dirname, '../prompts.txt');
+        const fileContent = await fs.promises.readFile(filePath, 'utf-8');
+
+        const regex = new RegExp(`Prompt${promptId}Start\\s*([\\s\\S]*?)\\s*Prompt${promptId}End`);
+        const match = fileContent.match(regex);
+
+        if (match &amp;&amp; match[1].trim()) {
+            return match[1].trim();
+        } else {
+            throw new Error(`Prompt '${promptId}' not found or empty.`);
+        }
+    } catch (err) {
+        throw new Error(`Failed to load prompt '${promptId}': ${err.message}`);
+    }
+}
+
+/**
+ * Creates a prompt message based on the given ID, input, and context.
+ * @async
+ * @param {string} ID - The ID of the prompt to retrieve.
+ * @param {string} input - The input data for the prompt, between 1-6 tips. 
+ * @param {string} context - The context related to the prompt, usually building information.
+ * @returns {Promise&lt;string[]>} A promise that resolves to an array containing the generated prompt message.
+ * @throws {Error} If the prompt cannot be retrieved.
+ */
+async function makePrompt(ID, input, context) {
+    const prompt = await getPromptById(ID);
+    const message = `${prompt}
+    Åtgärder:
+    ${input}
+    Här är kontext gällande bostaden ${context}`
+    return [message];
+}
+
+/**
+ * Creates a prompt message specifically for asking a question based on building information.
+ * This is a specialized edge case of the `makePrompt` function.
+ * @async
+ * @param {Object} buildingInfo - The building information to include in the prompt.
+ * @returns {Promise&lt;string[]>} A promise that resolves to an array containing the generated prompt message.
+ * @throws {Error} If the prompt cannot be retrieved.
+ */
+async function makePromptQuestion(buildingInfo) {
+    const prompt = await getPromptById("Question");
+    const message = `${prompt}
+    Fastighetsinformation:
+    ${JSON.stringify(buildingInfo)}`;
+    return [message];
+}
+
+/**
+ * Creates a prompt message for expanding answers by combining predefined prompt text with input and context.
+ * @async
+ * @param {Object} context - The context related to the prompt, usually building information.
+ * @param {Object} input - The input data for the prompt, between 1-6 tips.
+ * @returns {Promise&lt;string[]>} - A promise that resolves to an array containing the generated prompt message.
+ */
+async function makePromptExpand(context, input) {
+    const prompt = await getPromptById('Expand');
+    const message = `
+    ${prompt}
+    ${JSON.stringify(input)}
+    Kontext från tidigare konversation:
+    ${JSON.stringify(context)}
+
+    `;
+
+    console.log("Message expand", message);
+    return [message];
+
+}
+
+/** 
+ * Creates a prompt message for generating energy savings calculations by combining predefined prompt text with input and context. 
+ * @param {Object} context - The context related to the prompt, usually building information.
+ * @param {Object} input - The input data for the prompt, usually between 1-6 tips. 
+ * @returns {Array&lt;string>} - A promise that resolves to an array containing the generated prompt message.
+ */
+function makePromptSaving(input, context) {
+
+    const message = `Generera en beräkning av energibesparingar för följande åtgärder på en bostad:
+    ${input}
+    Här är kontext gällande bostaden ${context}
+    Printa inte kontexten i svaret.
+    Svara på svenska och skriv med tydlig struktur:
+    Skriv inte "Hej" eller "Med vänlig hälsning" i början eller slutet av meddelandet.`
+    return [message];
+}
+
+/**
+ * Enhances a prompt message by adding relevant context from the database.
+ * This function searches the database for entries similar to the provided inputs
+ * and appends the formatted results to the prompt message.
+ * @async
+ * @param {string} promptMessage - The original prompt message to enhance.
+ * @param {Object[]} inputs - An array of input objects used to search the database.
+ * @returns {Promise&lt;string[]>} A promise that resolves to an array containing the enhanced prompt message.
+ * @throws {Error} If the database search or formatting fails.
+ */
+async function addRAGContext(promptMessage, inputs) {
+    const resultsString = JSON.stringify(inputs);
+    const searchResults = await searchDatabase(resultsString, 5);
+    // const formattedResults = formatResults(searchResults);
+    // formattedResults was removed because of missmatch with new pdf metadata implementation, if anything breaks it might be because this needs to be used.
+
+    const messageAddon =
+        `\nHär är de inlägg i vår databas som har bäst similarity-score i relation till fastighetsinformationen: 
+    ${JSON.stringify(searchResults)}
+
+    Använd endast informationen från databasen för att ge ett relevant svar på ovanstående. 
+    Om du inte kan ge 6 tips baserat på denna information, ge så många tips som du kan.
+    Om du inte kan ge ett svar baserat på denna information, skriv "Jag kan tyvärr inte ge något svar på detta."
+    Efter varje punkt i punktlistan ska du skriva "Källa: [filnamnet som finns i "source" fältet]".
+    `;
+    return [promptMessage + messageAddon];
+}
+
+/**
+ * Creates a prompt message for uploading files by combining predefined prompt text with inserted file data.
+ * @param {string} fileType - The type of the file being uploaded.
+ * @param {Object} fileData - The data of the file being uploaded.
+ * @param {string} fileName - The name of the file being uploaded.
+ * @returns {Array&lt;string>} - An array containing the generated prompt message.
+ * @throws {Error} If the file type is unsupported.
+ */
+function constructUploadPrompt(fileType, fileData, fileName) {
+    let contents = [];
+
+    switch (fileType) {
+        case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+        case "application/vnd.ms-excel":
+            const excelPrompt = `
+            Du har fått ett dataset i JSON-format som är baserat på en Excel-fil med timvis förbrukningsdata.
+            Varje kolumn (förutom datum/tid) representerar en typ av förbrukning (t.ex. el, fjärrvärme, fjärrkyla).
+  
+            Analysera varje förbrukningskolumn enligt följande punkter:
+  
+            1. **Profiler**: Identifiera mönster för:
+            - Dygn (timmar då förbrukningen är högst/lägst, när den börjar stiga och sjunker igen)
+            - Veckodagar (vilka veckodagar har högst respektive lägst förbrukning)
+            - Månader (säsongsvariationer)
+  
+            2. **Effekttoppar**:
+            - Identifiera enskilda timmar då förbrukningen är som högst.
+            - Ange när dessa infaller (dygn, vecka, månad).
+  
+            3. **Baslast**:
+            - Räkna ut medelvärdet av dygnets lägsta förbrukning per dag.
+            - Undersök om baslasten varierar över året.
+  
+            4. **Verksamhetstid** _(om användaren har angett verksamhetstider)_:
+            - Undersök om förbrukningsmönstret stämmer överens med dessa tider.
+            - Exempel: Finns hög förbrukning på helger fast verksamheten ska vara stängd?
+  
+            5. **Avvikande mönster**:
+            - Identifiera onormala förbrukningar (t.ex. plötsliga toppar, ovanliga tider)
+            - Beskriv när och var dessa inträffade.
+  
+            Observera att datan innehåller datum och tid - använd det för att avgöra veckodag och klockslag.
+            Svara i klartext 
+  
+            Returnera analysen uppdelad per kolumn, med tydliga rubriker.
+            `;
+            contents = [
+                `Här är en Excelfil med timvis förbrukningsdata: ${fileName}`,
+                JSON.stringify(fileData.data),
+                "\n\n",
+                excelPrompt,
+            ];
+            break;
+
+        case "application/pdf":
+            contents = [
+                `Analysera följande PDF fil: ${fileName}`,
+                createPartFromUri(fileData.uri, fileType),
+                "\n\n",
+                "Kan du analysera innehållet i PDF-filen och ge en sammanfattning?",
+            ];
+            break;
+
+        default:
+            throw new Error("Unsupported file type");
+    }
+    return contents;
+}
+
+
+module.exports = {
+    getPromptById,
+    makePrompt,
+    makePromptQuestion,
+    makePromptExpand,
+    makePromptSaving,
+    addRAGContext,
+    constructUploadPrompt,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addRAGContext">addRAGContext</a></li><li><a href="global.html#checkIfDocumentInDatabase">checkIfDocumentInDatabase</a></li><li><a href="global.html#chunkDocument">chunkDocument</a></li><li><a href="global.html#cleanJsonString">cleanJsonString</a></li><li><a href="global.html#cleanUpFile">cleanUpFile</a></li><li><a href="global.html#client">client</a></li><li><a href="global.html#constructUploadPrompt">constructUploadPrompt</a></li><li><a href="global.html#excelToJson">excelToJson</a></li><li><a href="global.html#generateAndParseContent">generateAndParseContent</a></li><li><a href="global.html#generateContentWithGemini">generateContentWithGemini</a></li><li><a href="global.html#generateEmbeddings">generateEmbeddings</a></li><li><a href="global.html#getPromptById">getPromptById</a></li><li><a href="global.html#handleGeneration">handleGeneration</a></li><li><a href="global.html#insertDatabase">insertDatabase</a></li><li><a href="global.html#isValidFileType">isValidFileType</a></li><li><a href="global.html#loadPDF">loadPDF</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#makePrompt">makePrompt</a></li><li><a href="global.html#makePromptExpand">makePromptExpand</a></li><li><a href="global.html#makePromptQuestion">makePromptQuestion</a></li><li><a href="global.html#makePromptSaving">makePromptSaving</a></li><li><a href="global.html#processExcelFile">processExcelFile</a></li><li><a href="global.html#processExpand">processExpand</a></li><li><a href="global.html#processGeneration">processGeneration</a></li><li><a href="global.html#processGuide">processGuide</a></li><li><a href="global.html#processOffert">processOffert</a></li><li><a href="global.html#processPdfFile">processPdfFile</a></li><li><a href="global.html#processQuestion">processQuestion</a></li><li><a href="global.html#processSaving">processSaving</a></li><li><a href="global.html#retryApiCall">retryApiCall</a></li><li><a href="global.html#saveEmbedding">saveEmbedding</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#uploadFileToGemini">uploadFileToGemini</a></li><li><a href="global.html#vectorSearch">vectorSearch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 14:08:44 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

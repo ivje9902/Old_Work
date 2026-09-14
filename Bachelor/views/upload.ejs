@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysera filer</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/upload.css' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+    <script src="/javascripts/script.js"></script>
+    <script src="/javascripts/upload.js"></script>
+    <script src="/javascripts/results.js"></script>
+    <script src="https://kit.fontawesome.com/db6d50f21f.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="items-center justify-center bg-gray-100">
+
+    <nav class=" w-full z-20 left-0 start-0 bg-white border border-gray-200 rounded-lg shadow-sm mt-2 text-[#00B7FF]">
+    <ul class="flex flex-row">
+      <a><img src="images/EU.png" class="h-20 p-3 col-start-1- col-end-2" alt="Logo"></a>
+      <a href="https://www.regionorebrolan.se/" target="_blank">
+        <img src="images/orebro.png" class="h-20 p-3 col-start-1- col-end-2" alt="Logo">
+      </a>
+
+        <a href="/" class="block font-bold text-xl p-6 hover:bg-blue-100" aria-current="page" >Hem</a>
+        <a href="upload" class="block font-bold text-xl p-6  hover:bg-blue-100 " aria-current="page">Energianalys</a>
+    </ul>
+  </nav>
+
+
+    <div class="bg-white w-99/100 my-2 p-8 rounded-2xl shadow-xl flex space-x-8 ">
+        <!-- Left Column: File Upload Form -->
+        <div class="w-1/3">
+            <h2 class="text-2xl font-bold text-center mb-6">Ladda upp din fil</h2>
+            <form action="/upload" method="POST" enctype="multipart/form-data" class="flex flex-col space-y-4"
+                onsubmit="handleFileUpload(event)">
+                <label for="submittedFile"
+                    class="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-blue-400 transition cursor-pointer">
+                    <svg class="w-12 h-12 text-gray-400 mb-2" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 16l4-4a4 4 0 015.657 0l4 4M7 10v10m10-10v10m-6 0h6" />
+                    </svg>
+                    <span id="file-name" class="text-gray-500">Välj fil</span>
+                    <input type="file" id="submittedFile" name="file" class="hidden" required onchange="showFileName()">
+                </label>
+                <button type="submit" id="upload-button"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg transition">
+                    Generera analys
+                </button>
+            </form>
+        </div>
+        
+
+        <!-- Right Column: Results Container -->
+        <div class="w-2/3 bg-gray-50 border border-gray-300 rounded-lg p-6 min-h-screen flex">
+            <div id="results-container" class="text-gray-600 text-sm whitespace-pre-wrap leading-relaxed">
+
+                <p class="text-black-400 italic font-bold">
+                    På denna sida kan du ladda upp en fil för analys av energidata med fokus på energieffektivisering. 
+                    
+                    Verktyget hjälper dig att analysera din energiförbrukning och identifiera möjliga åtgärder för att minska energianvändningen.
+                    
+                    <strong>Vänligen välj en fil och klicka på "Generera analys"-knappen.</strong>
+
+                    <strong>Tillåtna filtyper:</strong> Excel-filer och PDF-filer. Endast en fil kan laddas upp åt gången.
+
+                    <strong>För Excel-filer:</strong>
+                    - Den första raden måste innehålla tydliga kolumnrubriker, till exempel. "Datum tid", "El", "Värme", "Kyla".
+                    - Varje rad därefter ska innehålla data, till exempel siffror, datum eller text beroende på kolumn.
+                    - Det är rekommenderat att ha en kolumn för tid, till exempel "2024-01-01 01:00".
+                    - Energiförbrukning eller liknande data ska anges som siffror i sina respektive kolumner.
+                    - Undvik sammanslagna celler, tomma rader och kolumner.
+
+                    <strong>För PDF-filer:</strong>
+                    - Filen bör innehålla tydliga tabeller eller textavsnitt med energidata, till exempel förbrukningsvärden, perioder och eventuella kommentarer.
+                    - Undvik inskannade bilder eller handskrivna dokument, eftersom dessa inte kan tolkas automatiskt.
+
+                    Analysresultaten kommer att visas här efter att du har laddat upp en fil.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            resetFileInput();
+        });
+
+
+        function resetFileInput() {
+            const fileInput = document.getElementById('submittedFile');
+            if (fileInput.value) {
+                fileInput.value = '';
+            }
+        }
+    </script>
+
+</body>
+
+</html>

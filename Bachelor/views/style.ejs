@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultatsida</title>
+    <link rel="stylesheet" href="/stylesheets/output.css">
+
+    <!--Scripts for MathJax to parse latex-->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!--Scripts for html2canvas to convert latex into pdf-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!--Scripts for jsPDF and jsPDF.html to convert text into pdfs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/jspdf-html@latest/dist/jspdf-html.umd.min.js" type="text/html"></script>
+
+    <!-- DOMPurify -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.3/purify.min.js"></script>
+
+    <!--Script for marked library to parse markdown into html-->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!--Script for our javascript files-->
+    <script src="/javascripts/results.js"></script>
+    <script src="/javascripts/generator.js"></script>
+    <script src="/javascripts/response.js"></script>
+    <script src="/javascripts/script.js"></script>
+    <script src="/javascripts/inputPage.js"></script>
+
+    <!--Script for icon library-->
+    <script src="https://kit.fontawesome.com/db6d50f21f.js" crossorigin="anonymous"></script>
+</head>
+
+
+
+
+
+
+
+
+<body class="bg-[url(/images/bakgrund-test.jpg)] p-0 m-0" style="overflow-y: scroll;">
+
+
+    <nav class=" w-99/100 z-20 left-0 start-0 text-[#00B7FF] bg-white border border-gray-200 rounded-lg shadow-sm mt-2">
+        <ul class="flex flex-row">
+            <img src="images/BlaGul_1000x200.png" class="h-20 p-3 col-start-1 col-end-2" alt="EU_Logo">
+            <a href="https://www.regionorebrolan.se/" target="_blank">
+                <img src="images/orebro.png" class="h-20 p-3 col-start-1- col-end-2" alt="Logo">
+            </a>
+
+            <a href="/" class="block font-bold text-xl p-7 hover:bg-gray-100" aria-current="page">Hem</a>
+            <a href="upload" class="block font-bold text-xl p-7  hover:bg-gray-100 " aria-current="page">Energianalys</a>
+
+            <button onclick="open_information('open')"
+                class="block font-bold text-[#00B7FF] text-3xl ml-auto my-auto mr-5">
+                <i class="fa-solid fa-circle-info p-2 hover:bg-gray-100 hover:rounded-full hover:cursor-pointer"></i>
+            </button>
+        </ul>
+    </nav>
+
+
+    <div id="information-container"
+        class="hidden p-5 overflow-y-scroll overscroll-contain fixed top-5/100 left-5/100 right-5/100 bottom-5/100 opacity-100 grid-cols-10 gap-y-5 items-center justify-center rounded-lg bg-white shadow-xl border-2 border-black/25">
+        <h1 class="col-span-8 mb-auto mr-auto ml-5 mt-10 font-bold text-2xl w-fit">Välkommen till tips sidan! </h1>
+
+        <button id="forever_close" onclick="close_information(true)"
+            class="p-2 ml-auto my-auto text-lg rounded-lg border-gray-200 border-2 hover:cursor-pointer hover:bg-gray-300">
+            Visa inte igen
+        </button>
+
+        <button onclick="close_information(false)" class="mb-auto ml-auto mr-5 mt-5 text-2xl hover:cursor-pointer">
+            <i class="fa-solid fa-circle-xmark p-1"></i>
+        </button>
+
+        <p class="col-span-10 row-span-4 mb-5 mx-5 p-5 text-lg text-gray-700 bg-gray-100 rounded-lg ">
+            Här kan du se alla tips som har genererats baserat på informationen du gav.
+            Du kan utnyttja knapparna längre ned på sidan för att generera olika typer av information, baserat på vilka
+            kryssrutor du fyller i. <br><br>
+
+            <strong>Tänk på att du måste markera minst en av tipsen för att knapparna ska fungera.</strong><br><br>
+
+            <strong>Utveckla svaren:</strong> Genererar en längre text som beskriver varje markerat tips i
+            detalj.<br><br>
+
+            <strong>Steg för steg guide:</strong> Genererar en guide som du kan följa för att utföra de
+            valda tipsen.<br><br>
+
+            <strong>Energibesparing:</strong> Genererar en ungefärlig uträkning på hur mycket energi du kan
+            förväntas spara, baserat på de valda tipsen och din bostadsinformation.<br><br>
+
+            <strong>Offertförfrågan:</strong> Genererar en offertförfrågan för de valda tipsen, du kan fylla
+            i relevant information direkt i textrutan och sedan skicka iväg till företag, eller bara ladda ned för att
+            behålla till senare.<br><br>
+
+            <strong>Utvärdera verktyget:</strong> Öppnar ett formulär som du kan fylla i för att ge återkoppling till
+            oss gällande detta verktyget. Denna knapp behöver inte ha någon kryssruta markerad för att fungera.<br><br>
+
+            Oavsett vilken knapp du använder så kommer resultatet skrivas ut i en ny ruta under knapparna.
+            I denna ruta kan du skriva fritt, och även ladda ner resultatet till en PDF.
+
+        </p>
+    </div>
+
+
+    <div role="status" id="loader">
+        <svg aria-hidden="true"
+            class="w-40 h-40 mt-50 mx-auto flex justify-content-center text-gray-200 animate-spin fill-blue-600"
+            viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                fill="currentColor" />
+            <path
+                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                fill="currentFill" />
+        </svg>
+        <span class="sr-only">Loading...</span>
+    </div>
+
+
+
+    <div id="tips-container" class="w-full place-content-start hidden">
+
+        <div id="card_1"
+            class=" grid grid-cols-2 pr-10 p-6 w-99/100 mt-2 bg-white border border-gray-200 rounded-lg shadow-sm cursor-default">
+            <h5 id="tip_1" class="mb-2 text-2xl pt-5 font-bold tracking-tight text-gray-900 ">
+                Tip 1</h5>
+            <input id="cbox1" type="checkbox" value="false" onclick="changeValue(id)"
+                class="w-10 h-10 place-self-end text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 ">
+
+            <p id="desc_1" class="col-span-2 w-95/100 font-normal text-lg text-gray-700 ">
+                Desc 1
+            </p>
+        </div>
+
+        <div id="card_2"
+            class="grid grid-cols-2 pr-10 mt-2 p-6 w-99/100 bg-white border border-gray-200 rounded-lg shadow-sm cursor-default">
+            <h5 id="tip_2" class="mb-2 text-2xl pt-5 font-bold tracking-tight text-gray-900 ">
+                Tip 2</h5>
+            <input id="cbox2" type="checkbox" value="false" onclick="changeValue(id)"
+                class="w-10 h-10 place-self-end text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 ">
+
+            <p id="desc_2" class="col-span-2 w-95/100 font-normal text-lg text-gray-700">
+                Desc 2
+            </p>
+        </div>
+
+        <div id="card_3"
+            class="grid grid-cols-2 pr-10 mt-2 p-6 w-99/100 bg-white border border-gray-200 rounded-lg shadow-sm cursor-default">
+            <h5 id="tip_3" class="mb-2 text-2xl pt-5 font-bold tracking-tight text-gray-900">
+                Tip 3</h5>
+            <input id="cbox3" type="checkbox" value="false" onclick="changeValue(id)"
+                class="w-10 h-10 place-self-end text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 ">
+
+            <p id="desc_3" class="col-span-2 w-95/100 font-normal text-lg text-gray-700 ">
+                Desc 3
+            </p>
+        </div>
+
+        <div id="card_4"
+            class="grid grid-cols-2 pr-10 mt-2 p-6 w-99/100 bg-white border border-gray-200 rounded-lg shadow-sm cursor-default">
+            <h5 id="tip_4" class="mb-2 text-2xl pt-5 font-bold tracking-tight text-gray-900">
+                Tip 4</h5>
+            <input id="cbox4" type="checkbox" value="false" onclick="changeValue(id)"
+                class="w-10 h-10 place-self-end text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500">
+
+            <p id="desc_4" class="col-span-2 w-95/100 font-normal text-lg text-gray-700">
+                Desc 4
+            </p>
+        </div>
+
+        <div id="card_5"
+            class="grid grid-cols-2 pr-10 mt-2 p-6 w-99/100 bg-white border border-gray-200 rounded-lg shadow-sm cursor-default">
+            <h5 id="tip_5" class="mb-2 text-2xl pt-5 font-bold tracking-tight text-gray-900 ">
+                Tip 5</h5>
+            <input id="cbox5" type="checkbox" value="false" onclick="changeValue(id)"
+                class="w-10 h-10 place-self-end text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 ">
+
+            <p id="desc_5" class="col-span-2 w-95/100 font-normal text-lg text-gray-700 ">
+                Desc 5
+            </p>
+        </div>
+
+        <div id="card_6"
+            class="grid grid-cols-2 pr-10 mt-2 p-6 w-99/100 bg-white border border-gray-200 rounded-lg shadow-sm cursor-default">
+            <h5 id="tip_6" class="mb-2 text-2xl pt-5 font-bold tracking-tight text-gray-900 ">
+                Tip 6</h5>
+            <input id="cbox6" type="checkbox" value="false" onclick="changeValue(id)"
+                class="w-10 h-10 place-self-end text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 ">
+
+            <p id="desc_6" class="col-span-2 w-95/100 font-normal text-lg text-gray-700 ">
+                Desc 6
+            </p>
+        </div>
+
+        <div class="inline-flex rounded-md shadow-xs mt-2 w-99/100" role="group" id="buttonGroup">
+            <button type="button" id="expandButton"
+                class="px-1 py-1 w-1/5 text-lg font-bold text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">Utveckla
+                svaren</button>
+            <button type="button" id="guideButton"
+                class="px-1 py-1 w-1/5 text-lg font-bold text-gray-900 bg-white border-t border-b border-r border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                Steg för steg guide
+            </button>
+            <button type="button" id="calculationButton"
+                class="px-1 py-1 w-1/5 text-lg font-bold text-gray-900 bg-white border-t border-b border-r border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                Energibesparing
+            </button>
+            <button type="button" id="offerButton"
+                class="px-1 py-1 w-1/5 text-lg font-bold text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 ">
+                Offertförfrågan
+            </button>
+            <button type="button" id="evalButton"
+                class="px-10 py-5 w-1/5 text-lg font-bold text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 "
+                onclick="openForm()">
+
+                Utvärdera verktyget
+            </button>
+
+        </div>
+        <script>
+            function changeValue(id) {
+                cbox_val = document.getElementById(id).value;
+                if (cbox_val == "false") {
+                    document.getElementById(id).value = "true";
+                }
+                else {
+                    document.getElementById(id).value = "false";
+                }
+            }
+        </script>
+
+        <div class="place-self-left pr-10 mt-2 p-6 w-99/100 bg-white border border-gray-200 rounded-lg shadow-sm "
+            id="evolve_parent" style="display: none;">
+            <div id="evolve_title" class="invisible text-2xl font-bold mb-5">
+            </div>
+            <div id="evolve_text" style="field-sizing: content;" contenteditable="true"
+                class="w-99/100 active: outline-none text-lg" spellcheck="false">
+            </div>
+        </div>
+
+
+
+
+        <div id="feedback-form-container"
+            class="fixed top-1/100 left-20/100 right-20/100 h-99/100 bg-opacity-0 flex items-center justify-center invisible">
+            <form
+                class="relative max-w-sm mx-auto place-self-center pr-10 p-6 w-99/100 bg-white border border-gray-200 rounded-lg shadow-sm"
+                id="feedback-form">
+                <fieldset class="pb-5">
+                    <legend class="sr-only">Relevance</legend>
+                    <button type="button" onclick="closeForm()"
+                        style="position: absolute; top: 10px; right: 10px; background: white; padding: 8px; border-radius: 4px; border: none; cursor: pointer;">
+                        <span class="sr-only">Close menu</span>
+                        <svg class="h-6 w-6 text-gray-400 hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <label for="radio" class="block mb-2 text-sm font-medium text-gray-900 ">Hur
+                        många av
+                        tipsen
+                        var
+                        relevanta
+                    </label>
+                    <div class="flex items-center mb-4">
+                        <input id="relevance-option-1" type="radio" name="relevance" value="1"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 " checked>
+                        <label for="relevance-option-1" class="block ms-2  text-sm font-medium text-gray-900 ">
+                            0
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="relevance-option-2" type="radio" name="relevance" value="2"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 ">
+                        <label for="relevance-option-2" class="block ms-2 text-sm font-medium text-gray-900 ">
+                            1-2
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="relevance-option-3" type="radio" name="relevance" value="3"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 ">
+                        <label for="relevance-option-3" class="block ms-2 text-sm font-medium text-gray-900 ">
+                            3-4
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="relevance-option-4" type="radio" name="relevance" value="4"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 ">
+                        <label for="relevance-option-4" class="block ms-2 text-sm font-medium text-gray-900 ">
+                            4-5
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="relevance-option-5" type="radio" name="relevance" value="5"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 ">
+                        <label for="relevance-option-5" class="block ms-2 text-sm font-medium text-gray-900 ">
+                            6+
+                        </label>
+                    </div>
+                </fieldset>
+
+                <fieldset class="pb-5">
+                    <legend class="sr-only">Satisfaction</legend>
+                    <label for="radio" class="block mb-2 text-sm font-medium text-gray-900 ">
+                        <strong>Hur nöjd är du med verktyget på en skala 1-5?</strong>
+                    </label>
+                    <div class="flex items-center mb-4">
+                        <input id="satisfaction-option-1" type="radio" name="satisfaction" value="1"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 " checked>
+                        <label for="satisfaction-option-1" class="block ms-2  text-sm font-medium text-gray-900 ">
+                            1 - Väldigt missnöjd
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="satisfaction-option-2" type="radio" name="satisfaction" value="2"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 ">
+                        <label for="satisfaction-option-2" class="block ms-2 text-sm font-medium text-gray-900 ">
+                            2 - Relativt missnöjd
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="satisfaction-option-3" type="radio" name="satisfaction" value="3"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 ">
+                        <label for="satisfaction-option-3" class="block ms-2 text-sm font-medium text-gray-900 ">
+                            3 - Varken nöjd eller missnöjd
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="satisfaction-option-4" type="radio" name="satisfaction" value="4"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 ">
+                        <label for="satisfaction-option-4" class="block ms-2 text-sm font-medium text-gray-900 ">
+                            4 - Relativt nöjd
+                        </label>
+                    </div>
+
+                    <div class="flex items-center mb-4">
+                        <input id="satisfaction-option-5" type="radio" name="satisfaction" value="5"
+                            class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 ">
+                        <label for="satisfaction-option-5" class="block ms-2 text-sm font-medium text-gray-900 ">
+                            5 - Väldigt nöjd
+                        </label>
+                    </div>
+                </fieldset>
+
+
+                <label for="additional_info" class="block mb-2 text-sm font-medium text-gray-900 ">
+                    <strong>Här kan du läggs till övrig information och återkoppling</strong>
+                </label>
+                <textarea id="additional_info" rows="4"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
+                    placeholder="Fritext..."></textarea>
+
+                <button id="form-button" type="submit"
+                    class="text-white mt-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Skicka</button>
+
+            </form>
+
+            <script>
+
+                const form = document.getElementById('feedback-form');
+
+                form.addEventListener("submit", async (event) => {
+                    event.preventDefault();
+
+                    await sendFeedback();
+                });
+
+            </script>
+
+        </div>
+    </div>
+
+    <script>
+        load_page();
+    </script>
+</body>

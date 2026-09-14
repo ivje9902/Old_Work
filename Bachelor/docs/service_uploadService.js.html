@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: service/uploadService.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: service/uploadService.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { uploadFileToGemini, generateContentWithGemini, } = require("../service/googleGeminiAPI");
+const { constructUploadPrompt } = require("../service/promptService");
+const ExcelJS = require("exceljs");
+const fs = require("fs");
+const path = require("path");
+
+
+/**
+ * Validates the MIME type of a file to ensure it is an allowed type.
+ * 
+ * @param {string} mimetype - The MIME type of the file to validate.
+ * @returns {boolean} `true` if the file type is valid, otherwise `false`.
+ */
+function isValidFileType(mimetype) {
+    const allowedTypes = [
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.ms-excel",
+        "application/pdf",
+    ];
+    return allowedTypes.includes(mimetype);
+  }
+
+/**
+ * Converts an Excel file to a JSON object.
+ * @async
+ * @param {string} tempFilePath - The temporary file path of the Excel file to process.
+ * @returns {Promise&lt;Object[]>} A promise that resolves to an array of objects, 
+ * each containing the sheet name and its data.
+ * @throws {Error} If the file cannot be read or processed.
+ */
+async function excelToJson(tempFilePath) {
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.readFile(tempFilePath);
+
+    const allData = [];
+
+    workbook.worksheets.forEach((worksheet) => {
+        const sheetData = [];
+        let headers = [];
+
+        worksheet.eachRow((row, rowNumber) => {
+            if (rowNumber === 1) {
+                headers = row.values.slice(1);
+            } else {
+                const rowData = {};
+                row.eachCell((cell, colNumber) => {
+                    const header = headers[colNumber - 1] || `Column${colNumber}`;
+                    rowData[header] = cell.value;
+                });
+                sheetData.push(rowData);
+            }
+        });
+
+        allData.push({ sheetName: worksheet.name, data: sheetData });
+    });
+
+    return allData;
+}
+
+/**
+ * Processes an Excel file by converting it to JSON and generating a prompt for the API.
+ * @async
+ * @param {string} tempFilePath - The temporary file path of the Excel file to process.
+ * @param {string} mimetype - The MIME type of the file.
+ * @param {string} originalname - The original name of the file.
+ * @returns {Promise&lt;Object>} A promise that resolves to an object containing:
+ * - `excelData`: The JSON representation of the Excel file.
+ * - `apiResponse`: The response from the API after processing the prompt.
+ * @throws {Error} If the file cannot be processed or the API call fails.
+ */
+async function processExcelFile(tempFilePath, mimetype, originalname) {
+    console.log("Processing file:", tempFilePath);
+    console.log("MIME type:", mimetype);
+    const excelData = await excelToJson(tempFilePath);
+    const prompt = constructUploadPrompt(mimetype, { data: excelData }, originalname);
+    const apiResponse = await generateContentWithGemini(prompt);
+    return { excelData, apiResponse };
+  }
+  
+/**
+ * Processes a PDF file by uploading it and generating a prompt for the API.
+ * @async
+ * @param {string} tempFilePath - The temporary file path of the PDF file to process.
+ * @param {string} mimetype - The MIME type of the file.
+ * @param {string} originalname - The original name of the file.
+ * @returns {Promise&lt;Object>} A promise that resolves to an object containing:
+ * - `uploadedFile`: The uploaded file information.
+ * - `apiResponse`: The response from the API after processing the prompt.
+ * @throws {Error} If the file cannot be uploaded or the API call fails.
+ */
+async function processPdfFile(tempFilePath, mimetype, originalname) {
+    const uploadedFile = await uploadFileToGemini(tempFilePath, mimetype);
+    const prompt = constructUploadPrompt(mimetype, uploadedFile, originalname);
+    const apiResponse = await generateContentWithGemini(prompt);
+    return { uploadedFile, apiResponse };
+}
+
+
+module.exports = {
+    isValidFileType,
+    excelToJson,
+    processExcelFile,
+    processPdfFile,
+};
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-app.html">app</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addRAGContext">addRAGContext</a></li><li><a href="global.html#checkIfDocumentInDatabase">checkIfDocumentInDatabase</a></li><li><a href="global.html#chunkDocument">chunkDocument</a></li><li><a href="global.html#cleanJsonString">cleanJsonString</a></li><li><a href="global.html#cleanUpFile">cleanUpFile</a></li><li><a href="global.html#client">client</a></li><li><a href="global.html#constructUploadPrompt">constructUploadPrompt</a></li><li><a href="global.html#excelToJson">excelToJson</a></li><li><a href="global.html#generateAndParseContent">generateAndParseContent</a></li><li><a href="global.html#generateContentWithGemini">generateContentWithGemini</a></li><li><a href="global.html#generateEmbeddings">generateEmbeddings</a></li><li><a href="global.html#getPromptById">getPromptById</a></li><li><a href="global.html#handleGeneration">handleGeneration</a></li><li><a href="global.html#insertDatabase">insertDatabase</a></li><li><a href="global.html#isValidFileType">isValidFileType</a></li><li><a href="global.html#loadPDF">loadPDF</a></li><li><a href="global.html#main">main</a></li><li><a href="global.html#makePrompt">makePrompt</a></li><li><a href="global.html#makePromptExpand">makePromptExpand</a></li><li><a href="global.html#makePromptQuestion">makePromptQuestion</a></li><li><a href="global.html#makePromptSaving">makePromptSaving</a></li><li><a href="global.html#processExcelFile">processExcelFile</a></li><li><a href="global.html#processExpand">processExpand</a></li><li><a href="global.html#processGeneration">processGeneration</a></li><li><a href="global.html#processGuide">processGuide</a></li><li><a href="global.html#processOffert">processOffert</a></li><li><a href="global.html#processPdfFile">processPdfFile</a></li><li><a href="global.html#processQuestion">processQuestion</a></li><li><a href="global.html#processSaving">processSaving</a></li><li><a href="global.html#retryApiCall">retryApiCall</a></li><li><a href="global.html#saveEmbedding">saveEmbedding</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#uploadFileToGemini">uploadFileToGemini</a></li><li><a href="global.html#vectorSearch">vectorSearch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 14:08:44 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
