@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Connect - Quiz</title>
+    
+    
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+
+    <style>
+        #back-arrow {
+            position: absolute;
+            top: 50px;
+            color: white;
+            left: 50px;
+            font-size: 50px;
+            text-decoration: none;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <a href="quiz_menu.html" id="back-arrow">&larr;</a>
+
+    <div class="app">
+        <div class="quiz">
+            <h2 id="question">Question goes here</h2>
+            <div id="answer-buttons">
+                <button class="btn">A1</button>
+                <button class="btn">A2</button>
+                <button class="btn">A3</button>
+                <button class="btn">A4</button>
+            </div>
+            <button id="next-btn">Next</button>
+            <button id="quit-btn" style="display: none;">Quit</button>
+        </div>
+    </div>
+
+    <script src="bundle.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+           
+            const selectedQuizID = localStorage.getItem("selectedQuizID");
+            
+            startQuiz(selectedQuizID);
+        });
+        
+        document.getElementById("add-quiz-btn").addEventListener("click", function() {
+            createQuiz();
+        });
+
+
+        
+    </script>
+
+
+
+</body>
+</html>

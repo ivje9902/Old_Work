@@ -1,0 +1,41 @@
+{
+  "dependencies": {
+    "babel": "^6.23.0",
+    "firebase": "^10.9.0",
+    "firebase-tools": "^13.7.2",
+    "jsdoc": "^4.0.2"
+  },
+  "name": "campus-connect",
+  "version": "1.0.0",
+  "main": "backend.js",
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-flow": "^7.24.1",
+    "@babel/preset-react": "^7.24.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^29.7.0",
+    "babel-plugin-styled-components": "^2.1.4",
+    "firebase-mock": "^2.2.4",
+    "jest": "^27.5.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "webpack",
+    "serve": "concurrently \"npm run build\" \"firebase serve\"",
+    "deploy": "concurrently \"npm run build\" \"firebase deploy\"",
+    "clean": "concurrently \"rm public\\bundle.js\" \"del public\\bundle.js\""
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
