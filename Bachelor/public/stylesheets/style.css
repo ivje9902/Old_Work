@@ -1,0 +1,698 @@
+@import "tailwindcss";
+/* tailwind.css */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+.header {
+  position: initial;
+  width: 98vmax;
+  background-color: white;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+body {
+  font: 14px "Inter-Regular", sans-serif;
+  background-image: url(/images/bakgrund-test.jpg);
+  padding-left: calc(100vw - 100%);
+}
+
+.dropdown_menu {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  height: 50%;
+  width: 100%;
+  margin-top: 5px;
+  gap: 5px;
+
+}
+
+.btn-custom {
+  background-color: #ff6347;
+  /* Custom red background */
+  color: white;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  border-radius: 7.2px;
+  background-color: rgb(255, 255, 255);
+  color: #000000c9;
+  padding: 30px;
+  font-size: 16px;
+  border: none;
+  display: inline-block;
+  width: 100%;
+  height: 120px;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  width: 49.75%;
+  margin-top: 5px;
+  background-clip: border-box;
+  background-color: white;
+
+  border-bottom-color: rgb(17, 17, 17);
+  border-bottom-left-radius: 7.2px;
+  border-bottom-right-radius: 7.2px;
+  border-bottom-style: none;
+  border-bottom-width: 0px;
+
+  border-left-color: rgb(224, 224, 224);
+  border-left-style: solid;
+  border-left-width: 2.4px;
+
+  border-right-color: rgb(17, 17, 17);
+  border-right-style: none;
+  border-right-width: 0px;
+
+  border-top-color: rgb(17, 17, 17);
+  border-top-left-radius: 7.2px;
+  border-top-right-radius: 7.2px;
+  border-top-style: none;
+  border-top-width: 0px;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0.75px 1.5px 0px, rgba(0, 0, 0, 0.16);
+  box-sizing: border-box;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  border-radius: 7.2px;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 100%;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: #0077ffc9;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.other_input {
+  width: 100%;
+}
+
+.cbox_input {
+  z-index: 2;
+  width: 50%;
+}
+
+.cbox_input input {
+  transform: scale(1.25);
+  position: relative;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  border-radius: 7.2px;
+  background-color: #ddd;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn:focus {
+  background-color: #ddd;
+}
+
+.dropdown-content::selection {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+
+.submit {
+  height: 50px;
+  width: 100%;
+  padding: 5px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 5px;
+
+  background-clip: border-box;
+  background-color: white;
+
+  border-bottom-color: rgb(17, 17, 17);
+  border-bottom-left-radius: 7.2px;
+  border-bottom-right-radius: 7.2px;
+  border-bottom-style: none;
+  border-bottom-width: 0px;
+
+  border-left-color: rgb(224, 224, 224);
+  border-left-style: solid;
+  border-left-width: 2.4px;
+
+  border-right-color: rgb(17, 17, 17);
+  border-right-style: none;
+  border-right-width: 0px;
+
+  border-top-color: rgb(17, 17, 17);
+  border-top-left-radius: 7.2px;
+  border-top-right-radius: 7.2px;
+  border-top-style: none;
+  border-top-width: 0px;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0.75px 1.5px 0px, rgba(0, 0, 0, 0.16);
+  box-sizing: border-box;
+
+
+  border-radius: 7.2px;
+  color: rgb(0, 102, 204);
+  display: inline-block;
+  background-color: white;
+  margin-top: 5px;
+}
+
+.submit:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.textbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 47.5%;
+  text-wrap-mode: wrap;
+  text-overflow: ellipsis;
+  background-clip: border-box;
+  background-color: white;
+
+  border-bottom-color: rgb(17, 17, 17);
+  border-bottom-left-radius: 7.2px;
+  border-bottom-right-radius: 7.2px;
+  border-bottom-style: none;
+  border-bottom-width: 0px;
+
+  border-left-color: rgb(224, 224, 224);
+  border-left-style: solid;
+  border-left-width: 2.4px;
+
+  border-right-color: rgb(17, 17, 17);
+  border-right-style: none;
+  border-right-width: 0px;
+
+  border-top-color: rgb(17, 17, 17);
+  border-top-left-radius: 7.2px;
+  border-top-right-radius: 7.2px;
+  border-top-style: none;
+  border-top-width: 0px;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0.75px 1.5px 0px, rgba(0, 0, 0, 0.16);
+  box-sizing: border-box;
+
+
+  color: rgb(0, 0, 0);
+  padding: 16px;
+  background-color: white;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+.inputbox {
+  height: 20px;
+  width: 100%;
+}
+
+.logo {
+  width: 30%;
+}
+
+.response {
+  font-size: 16px;
+  color: rgb(0, 102, 204);
+  background-color: white;
+  border-radius: 7.2px;
+  border-width: 2.4px;
+  border-color: rgb(224, 224, 224);
+  padding: 16px;
+  display: none;
+}
+
+.loader {
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 250px;
+  border: 16px solid white;
+  border-radius: 50%;
+  border-top: 16px solid rgb(0, 102, 204);
+  width: 120px;
+  height: 120px;
+
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Big box to display selected tips with scrollable content */
+.result-box {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  min-height: 100px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: Arial, sans-serif;
+}
+
+.form-container {
+  z-index: 99 !important;
+  position: fixed;
+  bottom: 5%;
+  right: 40%;
+  left: 40%;
+  width: 20%;
+  opacity: 0.9;
+  display: none;
+  margin: 0 auto;
+  padding: 10px;
+  flex-direction: column;
+
+  background-color: lightblue;
+  border-radius: 7.2px;
+  border-width: 1px;
+  border-color: black;
+
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form p {
+  font-size: large;
+}
+
+.form label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+}
+
+.form input[type="radio"] {
+  margin-right: 5%;
+  height: 20px;
+  width: 20px;
+}
+
+.form input[type="radio"]:hover {
+  cursor: pointer;
+}
+
+.form textarea {
+  font-size: small;
+  height: 100px;
+  width: 100%;
+  text-align: left;
+  text-wrap: wrap;
+}
+
+
+/* Collapsible box style */
+.tip-box {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: LightBlue;
+  margin-bottom: 10px;
+  padding: 10px;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.tip-box.active {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+.tip-content {
+  flex: 1;
+}
+
+.tip-title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.tip-description {
+  margin-top: 4px;
+  color: #333;
+}
+
+.tip-extra {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #222;
+  margin-top: 8px;
+  border-radius: 12px 12px 12px 0;
+}
+
+.tip-box.active .tip-extra {
+  max-height: 200px;
+  /* or a value that fits your content */
+  background-color: #ffffff;
+  transition: max-height 0.4s ease-out;
+}
+
+#tips-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.upload-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+@keyframes tilt {
+
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+.animate-tilt {
+  animation: tilt 10s infinite linear;
+}
+
+.submenu-parent {
+  position: relative;
+}
+
+.submenu-parent>.submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  white-space: nowrap;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1;
+}
+
+.submenu-parent:hover>.submenu {
+  display: block;
+}
+
+body {
+  background-color: #CECECE !important;
+  margin: 20px !important;
+}
+
+* {
+  transition: all .2s ease;
+}
+
+.extra-info {
+  display: none;
+  line-height: 30px;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  left: 50px;
+}
+
+.info:hover .extra-info {
+  display: block;
+}
+
+.info {
+  font-size: 20px;
+  padding-left: 5px;
+  width: 20px;
+  border-radius: 15px;
+}
+
+.info:hover {
+  background-color: white;
+  padding: 0 0 0 5px;
+  width: 315px;
+  text-align: left !important;
+}
+
+/* Info button styling */
+.info-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Tooltip styling */
+.info-tooltip {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  width: 250px;
+  font-size: 14px;
+  z-index: 1000;
+}
+
+/* Show tooltip on hover */
+.info-button:hover+.info-tooltip {
+  display: block;
+}
+
+nav a {
+  text-decoration: none;
+  /* Removes the underline */
+}
+
+nav a:hover {
+  text-decoration: none;
+  /* Ensures no underline on hover */
+}
+
+.container {
+  --transition: 350ms;
+  --folder-W: 120px;
+  --folder-H: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  height: calc(var(--folder-H) * 1.7);
+  position: relative;
+}
+
+.folder {
+  position: absolute;
+  top: -20px;
+  left: calc(50% - 60px);
+  animation: float 2.5s infinite ease-in-out;
+  transition: transform var(--transition) ease;
+}
+
+.folder:hover {
+  transform: scale(1.05);
+}
+
+.folder .front-side,
+.folder .back-side {
+  position: absolute;
+  transition: transform var(--transition);
+  transform-origin: bottom center;
+}
+
+.folder .back-side::before,
+.folder .back-side::after {
+  content: "";
+  display: block;
+  background-color: white;
+  opacity: 0.5;
+  z-index: 0;
+  width: var(--folder-W);
+  height: var(--folder-H);
+  position: absolute;
+  transform-origin: bottom center;
+  border-radius: 15px;
+  transition: transform 350ms;
+  z-index: 0;
+}
+
+.container:hover .back-side::before {
+  transform: rotateX(-5deg) skewX(5deg);
+}
+
+.container:hover .back-side::after {
+  transform: rotateX(-15deg) skewX(12deg);
+}
+
+.folder .front-side {
+  z-index: 1;
+}
+
+.container:hover .front-side {
+  transform: rotateX(-40deg) skewX(15deg);
+}
+
+.folder .tip {
+  background: linear-gradient(135deg, #ff9a56, #ff6f56);
+  width: 80px;
+  height: 20px;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: -10px;
+  z-index: 2;
+}
+
+.folder .cover {
+  background: linear-gradient(135deg, #ffe563, #ffc663);
+  width: var(--folder-W);
+  height: var(--folder-H);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.custom-file-upload {
+  font-size: 1.1em;
+  color: #ffffff;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background var(--transition) ease;
+  display: inline-block;
+  width: 100%;
+  padding: 10px 35px;
+  position: relative;
+}
+
+.custom-file-upload:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+
+/* From Uiverse.io by Galahhad */
+.input {
+  width: 1000px;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
+  outline: none;
+  color: dimgray;
+}
+
+.input:invalid {
+  animation: justshake 0.3s forwards;
+  color: red;
+}
+
+@keyframes justshake {
+  25% {
+    transform: translateX(5px);
+  }
+
+  50% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+
+  100% {
+    transform: translateX-(5px);
+  }
+}
+
+/* Remove arrows from number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
